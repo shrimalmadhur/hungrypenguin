@@ -1,4 +1,4 @@
-package util;
+package com.example.archanaiyer.hungrypenguin.ui.util;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,7 +15,7 @@ import android.view.MenuItem;
 
 import com.example.archanaiyer.hungrypenguin.R;
 
-public class MainActivity extends AppCompatActivity {
+public class RestaurantDetailActivity extends AppCompatActivity {
     FragmentPagerAdapter adapterViewPager;
     String title;
     SharedPreferences main;
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_restaurant_detail);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (id == R.id.action_checkout) {
-            Intent i = new Intent(MainActivity.this, CheckoutActivity.class);
+            Intent i = new Intent(RestaurantDetailActivity.this, CheckoutActivity.class);
             startActivity(i);
         }
 
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void gotoDetail(int id) {
-//        Intent i = new Intent(MainActivity.this, FoodDetailActivity.class);
+//        Intent i = new Intent(RestaurantDetailActivity.this, FoodDetailActivity.class);
 //        i.putExtra("id", id);
 //        startActivity(i);
     }
