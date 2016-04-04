@@ -11,7 +11,7 @@ import com.example.archanaiyer.hungrypenguin.data.DishData;
 import com.example.archanaiyer.hungrypenguin.util.DetailEventHandler;
 
 import com.example.archanaiyer.hungrypenguin.model.Dish;
-import com.example.archanaiyer.hungrypenguin.util.DishesAdapter;
+import com.example.archanaiyer.hungrypenguin.adapter.DishesAdapter;
 import com.example.archanaiyer.hungrypenguin.util.PrefsEventHandler;
 import com.example.archanaiyer.hungrypenguin.util.SharedPrefsHelper;
 
