@@ -87,9 +87,9 @@ public class RestaurantDetailActivity extends AppCompatActivity {
     }
 
     public void gotoDetail(int id) {
-//        Intent i = new Intent(RestaurantDetailActivity.this, FoodDetailActivity.class);
-//        i.putExtra("id", id);
-//        startActivity(i);
+        Intent i = new Intent(RestaurantDetailActivity.this, FoodDetailActivity.class);
+        i.putExtra("id", id);
+        startActivity(i);
     }
 
 
