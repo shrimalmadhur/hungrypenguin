@@ -1,4 +1,4 @@
-package com.example.archanaiyer.hungrypenguin.ui.util;
+package com.example.archanaiyer.hungrypenguin.ui;
 
 /**
  * Created by archanaiyer on 4/4/16.

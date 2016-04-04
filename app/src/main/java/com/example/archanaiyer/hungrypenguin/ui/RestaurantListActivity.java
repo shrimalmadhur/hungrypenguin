@@ -1,4 +1,4 @@
-package com.example.archanaiyer.hungrypenguin.ui.util;
+package com.example.archanaiyer.hungrypenguin.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

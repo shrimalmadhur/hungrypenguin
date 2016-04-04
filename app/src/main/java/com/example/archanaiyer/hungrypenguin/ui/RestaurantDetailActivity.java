@@ -1,4 +1,4 @@
-package com.example.archanaiyer.hungrypenguin.ui.util;
+package com.example.archanaiyer.hungrypenguin.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;

@@ -1,4 +1,4 @@
-package com.example.archanaiyer.hungrypenguin.ui.util;
+package com.example.archanaiyer.hungrypenguin.util;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.archanaiyer.hungrypenguin.data.DishData;
+import com.example.archanaiyer.hungrypenguin.model.Dish;
 
 import java.util.List;
 

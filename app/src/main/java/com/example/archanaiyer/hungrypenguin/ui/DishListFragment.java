@@ -1,4 +1,4 @@
-package com.example.archanaiyer.hungrypenguin.ui.util;
+package com.example.archanaiyer.hungrypenguin.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,6 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.archanaiyer.hungrypenguin.data.DishData;
+import com.example.archanaiyer.hungrypenguin.util.DetailEventHandler;
+
+import com.example.archanaiyer.hungrypenguin.model.Dish;
+import com.example.archanaiyer.hungrypenguin.util.DishesAdapter;
+import com.example.archanaiyer.hungrypenguin.util.PrefsEventHandler;
+import com.example.archanaiyer.hungrypenguin.util.SharedPrefsHelper;
 
 import java.util.List;
 

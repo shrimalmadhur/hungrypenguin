@@ -1,4 +1,6 @@
-package com.example.archanaiyer.hungrypenguin.ui.util;
+package com.example.archanaiyer.hungrypenguin.data;
+
+import com.example.archanaiyer.hungrypenguin.model.Dish;
 
 import java.util.ArrayList;
 import java.util.List;
