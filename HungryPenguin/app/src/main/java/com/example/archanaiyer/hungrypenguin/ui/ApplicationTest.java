@@ -1,4 +1,4 @@
-package com.example.archanaiyer.hungrypenguin;
+package com.example.archanaiyer.hungrypenguin.ui;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
