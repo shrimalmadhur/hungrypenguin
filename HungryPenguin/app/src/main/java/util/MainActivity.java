@@ -1,4 +1,4 @@
-package ui;
+package util;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -112,11 +112,11 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0: // Fragment # 0 - This will show FirstFragment
-//                    return DishListFragment.newInstance(0);
+                    return DishListFragment.newInstance(0);
                 case 1:
-//                    return DishListFragment.newInstance(1);
+                    return DishListFragment.newInstance(1);
                 case 2:
-//                    return DishListFragment.newInstance(2);
+                    return DishListFragment.newInstance(2);
                 default:
                     return null;
             }

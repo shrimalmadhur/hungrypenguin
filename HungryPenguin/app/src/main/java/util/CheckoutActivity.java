@@ -1,4 +1,4 @@
-package ui;
+package util;
 
 /**
  * Created by archanaiyer on 4/4/16.
