@@ -2,11 +2,14 @@ package com.example.archanaiyer.hungrypenguin.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.archanaiyer.hungrypenguin.R;
 import com.example.archanaiyer.hungrypenguin.data.DishData;
 import com.example.archanaiyer.hungrypenguin.util.DetailEventHandler;
 
@@ -54,18 +57,17 @@ public class DishListFragment extends Fragment implements PrefsEventHandler, Det
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-//        View view = inflater.inflate(R.layout.fragment_dish_list, container, false);
-//        dishesRV = (RecyclerView) view.findViewById(R.id.rv);
-//        LinearLayoutManager llm = new LinearLayoutManager(getContext());
-//        dishesRV.setLayoutManager(llm);
-//        dishesRV.setAdapter(dishesAdapter);
-        View view = null;
+        View view = inflater.inflate(R.layout.fragment_dish_list, container, false);
+        dishesRV = (RecyclerView) view.findViewById(R.id.rv);
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        dishesRV.setLayoutManager(llm);
+        dishesRV.setAdapter(dishesAdapter);
         return view;
     }
-//
+
     @Override
     public void showState() {
-//        Toast.makeText(getContext(), prefsHelper.getState(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), prefsHelper.getState(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

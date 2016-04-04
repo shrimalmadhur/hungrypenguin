@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".ui.RestaurantDetailActivity">
     <item android:id="@+id/action_checkout"
         android:title="@string/action_checkout"
-        android:icon="@drawable/ic_done"
+        android:icon="@drawable/ic_shopping_cart"
         android:orderInCategory="1"
         app:showAsAction="ifRoom" />
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
