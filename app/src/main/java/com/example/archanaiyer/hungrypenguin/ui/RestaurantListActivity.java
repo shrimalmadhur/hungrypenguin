@@ -39,10 +39,8 @@ public class RestaurantListActivity extends AppCompatActivity {
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
 
-
         RestaurantData rd = new RestaurantData();
         List<Restaurant> restaurants = rd.getRestaurants();
-
 
         adapter = new RVSampleAdapter(restaurants, this);
         //adapter.setItemClickListener(this);

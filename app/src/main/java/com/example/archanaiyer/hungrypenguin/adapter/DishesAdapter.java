@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.archanaiyer.hungrypenguin.R;
 import com.example.archanaiyer.hungrypenguin.data.DishData;
 import com.example.archanaiyer.hungrypenguin.model.Dish;
 import com.example.archanaiyer.hungrypenguin.util.DetailEventHandler;
@@ -22,7 +23,7 @@ import java.util.List;
 /**
  * Created by archanaiyer on 4/4/16.
  */
-public class DishesAdapter {
+public class DishesAdapter extends RecyclerView.Adapter<DishesAdapter.ViewHolder> {
     private List<Dish> dishes;
     private SharedPrefsHelper sharedPrefsHelper;
     private PrefsEventHandler handler;
@@ -36,18 +37,16 @@ public class DishesAdapter {
         this.handler = handler;
     }
 
-//    @Override
+    @Override
     public DishesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
-        //View v = inflater.inflate(R.layout.dish_order_card, parent, false);
-        //DishesAdapter.ViewHolder vh = new DishesAdapter.ViewHolder(v);
-        View v = null;
-        ViewHolder vh = new ViewHolder(v);
+        View v = inflater.inflate(R.layout.dish_order_card, parent, false);
+        DishesAdapter.ViewHolder vh = new DishesAdapter.ViewHolder(v);
         return vh;
     }
 
-    //@Override
+    @Override
     public void onBindViewHolder(DishesAdapter.ViewHolder holder, int position) {
         Dish dish = dishes.get(position);
         holder.title.setTag(dish.id);
@@ -57,7 +56,7 @@ public class DishesAdapter {
         holder.stats.setText(dish.trendingStats + " Penguins bought this");
 
         int qty = sharedPrefsHelper.getValue(dish.id);
-        if(qty > 0) {
+        if (qty > 0) {
             holder.cost.setText("$" + Double.toString(dish.cost) + "(" + String.valueOf(qty) + ")");
         } else {
             holder.cost.setText("$" + Double.toString(dish.cost));
@@ -73,7 +72,7 @@ public class DishesAdapter {
             public void onClick(View v) {
                 sharedPrefsHelper.updateOrder((Integer) v.getTag(), 1);
                 int qty = sharedPrefsHelper.getValue((Integer) v.getTag());
-                if(qty > 0) {
+                if (qty > 0) {
                     Button b = (Button) v;
                     Dish d = DishData.getDish((Integer) v.getTag());
                     b.setText("$" + d.cost + "(" + String.valueOf(qty) + ")");
@@ -89,7 +88,7 @@ public class DishesAdapter {
         });
     }
 
-    //@Override
+    @Override
     public int getItemCount() {
         return dishes.size();
     }
@@ -102,10 +101,10 @@ public class DishesAdapter {
 
         public ViewHolder(View itemView) {
             super(itemView);
-            //stats = (TextView) itemView.findViewById(R.id.stats);
-            //thumbnail = (ImageView) itemView.findViewById(R.id.thumbnail);
-            //title = (TextView) itemView.findViewById(R.id.title);
-            //cost = (Button) itemView.findViewById(R.id.costButton);
+            stats = (TextView) itemView.findViewById(R.id.stats);
+            thumbnail = (ImageView) itemView.findViewById(R.id.thumbnail);
+            title = (TextView) itemView.findViewById(R.id.title);
+            cost = (Button) itemView.findViewById(R.id.costButton);
         }
     }
 }
