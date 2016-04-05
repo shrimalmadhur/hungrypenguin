@@ -14,7 +14,7 @@ public class DishData {
     static {
         dishes.add(new Dish(
                 0,
-                "http://i.giphy.com/ZH38oi5qr211u.gif",
+                "http://www.ihop.com/menus/main-menu/pancakes/-/media/ihop/MenuItems/Pancakes/Original%20Buttermilk%20Pancakes/Original_%20Buttermilk_Pancakes.png?mh=367",
                 "Pancakes",
                 7.00,
                 new ArrayList<String>() {{
@@ -26,7 +26,7 @@ public class DishData {
         ));
         dishes.add(new Dish(
                 1,
-                "http://45.media.tumblr.com/54b57b27e4c624616cd37684168bcd15/tumblr_nmfy5vqref1qdt6e2o3_1280.gif",
+                "https://www.trophycupcakes.com/sites/default/files/styles/standard_cupcake_detail/public/cupcakes/cupcake-red-velvet.jpg?itok=j3gpboNs",
                 "Ultimate cupcake",
                 6.00, new ArrayList<String>() {{
             add("Chocolate sprinkles");
@@ -37,7 +37,7 @@ public class DishData {
         ));
         dishes.add(new Dish(
                 2,
-                "http://45.media.tumblr.com/9c81bd5d13c04253b42e31b4be1f5d06/tumblr_nqz1tsWQxh1rq6lflo5_400.gif",
+                "http://epicureandculture.com/wp-content/uploads/2014/12/shutterstock_172040546.jpg",
                 "Croissants",
                 2.00, new ArrayList<String>() {{
             add("Chocolate");
@@ -47,7 +47,7 @@ public class DishData {
         ));
         dishes.add(new Dish(
                 3,
-                "http://49.media.tumblr.com/1ed213d5ac1c2ab2122095fa70b37ed7/tumblr_njb8p27oyC1qz6f9yo3_500.gif",
+                "http://www.medicalnewstoday.com/content/images/articles/297/297449/a-cup-of-coffee.jpg",
                 "Coffee",
                 3.50, new ArrayList<String>() {{
             add("Whipped cream");
