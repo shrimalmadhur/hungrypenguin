@@ -121,6 +121,12 @@ public class RestaurantDetailActivity extends AppCompatActivity {
                     return null;
             }
         }
+
+        // Returns the page title for the top indicator
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return titles[position];
+        }
     }
 }
 
