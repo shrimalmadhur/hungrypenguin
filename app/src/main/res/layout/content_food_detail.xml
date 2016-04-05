@@ -10,40 +10,73 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:layout_alignParentTop="true"
         android:adjustViewBounds="true"
-        />
+        android:paddingTop="20dp"
+        android:src="@drawable/com_facebook_profile_picture_blank_square" />
 
     <LinearLayout
         android:id="@+id/linear2"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_below="@+id/imageView"
         android:orientation="vertical">
 
-        <!--<com.ama.hungrypenguin.util.CircleCheckBox-->
-            <!--android:id="@+id/chbx"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="60dp"-->
-            <!--android:layout_alignBottom="@+id/imageView"-->
-            <!--android:layout_alignParentEnd="true"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:paddingLeft="5dp"-->
-            <!--app:borderThickness="2dp"-->
-            <!--app:circleBorderColor="#00CFAD"-->
-            <!--app:innerCircleColor="#00CFAD"-->
-            <!--app:innerCircleRadius="14dp"-->
-            <!--app:outerCircleColor="#6400CFAD"-->
-            <!--app:outerCircleRadius="6dp"-->
-            <!--app:showOuterCircle="true"-->
-            <!--app:text="French fries"-->
-            <!--app:textColor="#000000"-->
-            <!--app:textLeftPadding="5dp"-->
-            <!--app:textSize="16dp"-->
-            <!--app:tickColor="#ffffff"-->
-            <!--app:tickThickness="1dp" />-->
+        <TextView
+            android:id="@+id/dish_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Dish 1"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="44dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+
+        <TextView
+            android:id="@+id/reviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Reviews"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/review1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/back"
+            android:padding="15dp"
+            android:text="Wow this is great! -Anshima"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/review2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/back"
+            android:padding="15dp"
+            android:text="I will eat this everyday! -Pappu"
+            android:textSize="20dp" />
     </LinearLayout>
 
 </RelativeLayout>
