@@ -3,7 +3,7 @@ package com.example.archanaiyer.hungrypenguin.util;
 /**
  * Created by archanaiyer on 4/4/16.
  */
-public class MockAction implements Interactor{
+public class MockAction implements Interactor {
     private MockActionCallback callback;
     private MainThread mainThread;
 

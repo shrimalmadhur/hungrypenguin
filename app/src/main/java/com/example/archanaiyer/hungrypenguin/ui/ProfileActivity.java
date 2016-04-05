@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import com.example.archanaiyer.hungrypenguin.R;
 
-public class PostCheckoutActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post_checkout);
+        setContentView(R.layout.activity_profile);
     }
 }

@@ -50,7 +50,7 @@ public class SharedPrefsHelper {
     }
 
     public int getValue(int dishIndex) {
-        if(order.contains(String.valueOf(dishIndex))) {
+        if (order.contains(String.valueOf(dishIndex))) {
             return order.getInt(String.valueOf(dishIndex), 0);
         }
         return 0;

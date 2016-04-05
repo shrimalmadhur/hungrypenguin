@@ -110,7 +110,7 @@ public class CheckoutActivity extends AppCompatActivity implements MockActionCal
         Snackbar.make(fabProgressCircle, "Order Placed!", Snackbar.LENGTH_LONG)
                 .setAction("Action", null)
                 .show();
-        final Intent i = new Intent(CheckoutActivity.this, PostCheckoutActivity.class);
+        final Intent i = new Intent(CheckoutActivity.this, PostOrderActivity.class);
 
         Thread timerThread = new Thread() {
             public void run() {
