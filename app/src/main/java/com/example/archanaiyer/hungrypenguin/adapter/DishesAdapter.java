@@ -63,9 +63,9 @@ public class DishesAdapter extends RecyclerView.Adapter<DishesAdapter.ViewHolder
         }
 
         Uri uri = Uri.parse(dish.imageUrl);
-
-        final Context mContext = holder.thumbnail.getContext();
-        Glide.with(mContext).load(uri).asGif().into(holder.thumbnail);
+        holder.thumbnail.setImageURI(uri);
+//        final Context mContext = holder.thumbnail.getContext();
+//        Glide.with(mContext).load(uri).asGif().into(holder.thumbnail);
 
         holder.cost.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -2,6 +2,7 @@ package com.example.archanaiyer.hungrypenguin.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,6 +75,7 @@ public class RVSampleAdapter extends RecyclerView.Adapter<RVSampleAdapter.Sample
         holder.title.setText(restaurants.get(position).name);
         holder.address.setText(restaurants.get(position).address);
         holder.dollar.setText(restaurants.get(position).dollar);
+//        holder.thumbnail.setImageURI(Uri.parse(restaurants.get(position).imageUrl));
         Glide.with(holder.itemView.getContext())
                 .load(restaurants.get(position).imageUrl)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)

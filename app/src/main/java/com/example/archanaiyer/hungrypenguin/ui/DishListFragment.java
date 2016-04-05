@@ -1,5 +1,6 @@
 package com.example.archanaiyer.hungrypenguin.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -72,8 +73,8 @@ public class DishListFragment extends Fragment implements PrefsEventHandler, Det
 
     @Override
     public void gotoDetail(int id) {
-//        Intent i = new Intent(getActivity(), FoodDetailActivity.class);
-//        i.putExtra("id", id);
-//        startActivity(i);
+        Intent i = new Intent(getActivity(), FoodDetailActivity.class);
+        i.putExtra("id", id);
+        startActivity(i);
     }
 }
