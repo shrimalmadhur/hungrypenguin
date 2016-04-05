@@ -128,5 +128,15 @@ public class RestaurantDetailActivity extends AppCompatActivity {
             return titles[position];
         }
     }
+
+    public void showProfile(MenuItem item) {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
+
+    public void showHistory(MenuItem item) {
+        Intent intent = new Intent(this, OrderHistoryActivity.class);
+        startActivity(intent);
+    }
 }
 

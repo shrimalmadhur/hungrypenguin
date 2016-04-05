@@ -1,13 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.RestaurantDetailActivity">
-    <item
-        android:id="@+id/action_checkout"
-        android:icon="@drawable/ic_shopping_cart"
-        android:orderInCategory="1"
-        android:title="@string/action_checkout"
-        app:showAsAction="ifRoom" />
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
