@@ -30,8 +30,18 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Dish 1"
-            android:textSize="20dp"
+            android:textSize="40dp"
             android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
 
         <RatingBar
             android:id="@+id/ratingBar"
@@ -40,12 +50,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
-            android:layout_marginTop="44dp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
+            android:layout_marginTop="20dp" />
 
         <TextView
             android:id="@+id/reviews"
@@ -58,7 +63,7 @@
 
         <TextView
             android:id="@+id/review1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
@@ -69,7 +74,7 @@
 
         <TextView
             android:id="@+id/review2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
