@@ -26,7 +26,7 @@ public class DishData {
         ));
         dishes.add(new Dish(
                 1,
-                "https://www.trophycupcakes.com/sites/default/files/styles/standard_cupcake_detail/public/cupcakes/cupcake-red-velvet.jpg?itok=j3gpboNs",
+                "http://www.trophycupcakes.com/sites/default/files/styles/standard_cupcake_detail/public/cupcakes/cupcake-red-velvet.jpg?itok=j3gpboNs",
                 "Ultimate cupcake",
                 6.00, new ArrayList<String>() {{
             add("Chocolate sprinkles");

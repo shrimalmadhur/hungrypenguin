@@ -29,7 +29,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         main = this.getSharedPreferences("main", 1);
 
-        // set title based on whther it has been opened before
+        // set title based on whether it has been opened before
         if (savedInstanceState != null) {
             title = savedInstanceState.getString("title");
         } else if (getIntent() != null && getIntent().hasExtra("name")) {
