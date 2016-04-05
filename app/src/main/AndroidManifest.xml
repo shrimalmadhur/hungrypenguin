@@ -55,7 +55,8 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".ui.CheckoutActivity" />
         <activity android:name=".ui.ProfileActivity" />
-        <activity android:name=".ui.PostOrderActivity"></activity>
+        <activity android:name=".ui.PostOrderActivity" />
+        <activity android:name=".ui.OrderHistoryActivity"></activity>
     </application>
 
 </manifest>
