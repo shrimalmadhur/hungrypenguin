@@ -1,6 +1,6 @@
 package com.example.archanaiyer.hungrypenguin.data;
 
-import com.example.archanaiyer.hungrypenguin.model.Restaurant;
+import com.example.archanaiyer.hungrypenguin.entities.Restaurant;
 
 import java.util.ArrayList;
 import java.util.List;

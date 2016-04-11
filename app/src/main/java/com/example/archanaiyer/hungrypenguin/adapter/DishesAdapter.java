@@ -1,9 +1,6 @@
 package com.example.archanaiyer.hungrypenguin.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,15 +13,11 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.archanaiyer.hungrypenguin.R;
 import com.example.archanaiyer.hungrypenguin.data.DishData;
-import com.example.archanaiyer.hungrypenguin.model.Dish;
+import com.example.archanaiyer.hungrypenguin.entities.Dish;
 import com.example.archanaiyer.hungrypenguin.util.DetailEventHandler;
 import com.example.archanaiyer.hungrypenguin.util.PrefsEventHandler;
 import com.example.archanaiyer.hungrypenguin.util.SharedPrefsHelper;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 /**

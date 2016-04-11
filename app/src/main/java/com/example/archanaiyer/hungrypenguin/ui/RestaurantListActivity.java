@@ -15,7 +15,7 @@ import android.widget.ListView;
 import com.example.archanaiyer.hungrypenguin.R;
 import com.example.archanaiyer.hungrypenguin.adapter.RVSampleAdapter;
 import com.example.archanaiyer.hungrypenguin.data.RestaurantData;
-import com.example.archanaiyer.hungrypenguin.model.Restaurant;
+import com.example.archanaiyer.hungrypenguin.entities.Restaurant;
 import com.example.archanaiyer.hungrypenguin.util.SharedPrefsHelper;
 
 import java.util.List;

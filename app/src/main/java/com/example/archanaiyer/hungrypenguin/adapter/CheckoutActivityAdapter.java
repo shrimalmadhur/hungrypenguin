@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.archanaiyer.hungrypenguin.R;
-import com.example.archanaiyer.hungrypenguin.model.Checkout;
+import com.example.archanaiyer.hungrypenguin.entities.Checkout;
 
 import java.util.List;
 
