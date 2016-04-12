@@ -42,7 +42,7 @@
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="foo@bar.com"/>
+                    android:text="foo@bar.com" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -61,7 +61,7 @@
                     android:inputType="textPassword"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="bar"/>
+                    android:text="bar" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -79,8 +79,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp" />
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="30dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:onClick="register"
+                android:text="@string/action_register" />
         </LinearLayout>
 
     </ScrollView>

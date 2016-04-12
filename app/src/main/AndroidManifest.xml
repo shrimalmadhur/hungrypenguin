@@ -56,7 +56,8 @@
         <activity android:name=".ui.CheckoutActivity" />
         <activity android:name=".ui.ProfileActivity" />
         <activity android:name=".ui.PostOrderActivity" />
-        <activity android:name=".ui.OrderHistoryActivity"></activity>
+        <activity android:name=".ui.OrderHistoryActivity" />
+        <activity android:name=".ui.RegisterActivity"></activity>
     </application>
 
 </manifest>
