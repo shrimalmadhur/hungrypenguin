@@ -1,4 +1,4 @@
-package com.example.archanaiyer.hungrypenguin.model;
+package com.example.archanaiyer.hungrypenguin.entities;
 
 /**
  * Created by archanaiyer on 4/4/16.

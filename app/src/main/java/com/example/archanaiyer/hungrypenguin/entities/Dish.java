@@ -1,4 +1,4 @@
-package com.example.archanaiyer.hungrypenguin.model;
+package com.example.archanaiyer.hungrypenguin.entities;
 
 import java.util.ArrayList;
 
