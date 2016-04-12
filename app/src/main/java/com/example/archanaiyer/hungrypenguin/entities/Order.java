@@ -23,15 +23,7 @@ public class Order {
         return orderList;
     }
 
-    public void setOrderList(List<Checkout> orderList) {
-        this.orderList = orderList;
-    }
-
     public double getTotalPrice() {
         return totalPrice;
-    }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
     }
 }

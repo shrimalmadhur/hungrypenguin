@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.archanaiyer.hungrypenguin.R;
-import com.example.archanaiyer.hungrypenguin.local.FacebookHelper;
+import ws.local.FacebookHelper;
 import com.facebook.Profile;
 import com.facebook.login.widget.ProfilePictureView;
 

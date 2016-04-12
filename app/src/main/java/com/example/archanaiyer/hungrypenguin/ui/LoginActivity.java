@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.archanaiyer.hungrypenguin.R;
-import com.example.archanaiyer.hungrypenguin.local.FacebookHelper;
+import ws.local.FacebookHelper;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mLoginFormView;
     private LoginButton loginButton;
     private CallbackManager callbackManager;
-    FacebookHelper facebookHelper;
+    private FacebookHelper facebookHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

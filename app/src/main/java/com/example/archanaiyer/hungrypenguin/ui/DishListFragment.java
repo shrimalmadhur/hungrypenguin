@@ -28,7 +28,6 @@ public class DishListFragment extends Fragment implements PrefsEventHandler, Det
     private RecyclerView dishesRV;
     private DishesAdapter dishesAdapter;
     private SharedPrefsHelper prefsHelper;
-
     private int mpage;
 
     public static DishListFragment newInstance(int page) {

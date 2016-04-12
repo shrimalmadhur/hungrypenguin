@@ -1,4 +1,4 @@
-package com.example.archanaiyer.hungrypenguin.local;
+package ws.local;
 
 import com.facebook.AccessToken;
 
