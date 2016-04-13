@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.archanaiyer.hungrypenguin.R;
-import ws.local.FacebookHelper;
+import com.example.archanaiyer.hungrypenguin.ws.local.FacebookHelper;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -92,24 +92,24 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             startActivity(intent);
         }
 
-        loginButton = (LoginButton) findViewById(R.id.login_button);
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Intent intent = new Intent(getApplicationContext(), RestaurantListActivity.class);
-                startActivity(intent);
-            }
-
-            @Override
-            public void onCancel() {
-                // App code
-            }
-
-            @Override
-            public void onError(FacebookException exception) {
-                // App code
-            }
-        });
+//        loginButton = (LoginButton) findViewById(R.id.login_button);
+//        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//                Intent intent = new Intent(getApplicationContext(), RestaurantListActivity.class);
+//                startActivity(intent);
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//                // App code
+//            }
+//
+//            @Override
+//            public void onError(FacebookException exception) {
+//                // App code
+//            }
+//        });
 
         // ------------------- Normal Login ---------------------//
         // Set up the login form.
