@@ -45,7 +45,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="0dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginEnd="7dp"
         app:arcColor="#003fff"
         app:finalIcon="@drawable/ic_done">
 
@@ -54,8 +56,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_done"
-            android:layout_marginRight="7dp"
-            android:layout_marginBottom="7dp"/>
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"/>
 
     </com.github.jorgecastilloprz.FABProgressCircle>
 
