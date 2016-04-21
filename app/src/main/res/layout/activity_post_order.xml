@@ -11,21 +11,27 @@
     tools:context="com.example.archanaiyer.hungrypenguin.ui.PostOrderActivity">
 
     <Button
+        android:id="@+id/call_human"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_margin="10dp"
+        android:onClick="callHuman"
         android:text="Call a Human!" />
 
     <Button
+        android:id="@+id/leave_review"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_margin="10dp"
-        android:text="Change order" />
+        android:onClick="leaveReview"
+        android:text="Leave Review" />
 
     <Button
+        android:id="@+id/pay_bill"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_margin="10dp"
+        android:onClick="payBill"
         android:text="Pay Bill" />
 
 </LinearLayout>
