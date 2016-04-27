@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.archanaiyer.hungrypenguin.R;
+import com.example.archanaiyer.hungrypenguin.ws.remote.RemoteService;
 
 public class RestaurantDetailActivity extends AppCompatActivity {
     FragmentPagerAdapter adapterViewPager;
