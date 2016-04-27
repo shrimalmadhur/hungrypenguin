@@ -1,9 +1,11 @@
 package com.example.archanaiyer.hungrypenguin.entities;
 
+import java.io.Serializable;
+
 /**
  * Created by archanaiyer on 4/4/16.
  */
-public class Checkout {
+public class Checkout implements Serializable{
     public String imageUrl;
     public String name;
     public double cost;

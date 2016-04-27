@@ -1,11 +1,12 @@
 package com.example.archanaiyer.hungrypenguin.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by archanaiyer on 4/4/16.
  */
-public class Order {
+public class Order implements Serializable{
 
     private List<Checkout> orderList;
     private double totalPrice;

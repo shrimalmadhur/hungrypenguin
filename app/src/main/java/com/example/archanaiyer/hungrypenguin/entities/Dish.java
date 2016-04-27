@@ -1,11 +1,15 @@
 package com.example.archanaiyer.hungrypenguin.entities;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by archanaiyer on 4/4/16.
  */
-public class Dish {
+public class Dish implements Serializable{
     public int id;
     public String imageUrl;
     public String name;

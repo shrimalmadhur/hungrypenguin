@@ -1,9 +1,11 @@
 package com.example.archanaiyer.hungrypenguin.entities;
 
+import java.io.Serializable;
+
 /**
  * Created by archanaiyer on 4/4/16.
  */
-public class Restaurant {
+public class Restaurant implements Serializable{
 
     public String imageUrl;
     public String name;
@@ -16,5 +18,4 @@ public class Restaurant {
         this.dollar = dollar;
         this.address = address;
     }
-
 }
