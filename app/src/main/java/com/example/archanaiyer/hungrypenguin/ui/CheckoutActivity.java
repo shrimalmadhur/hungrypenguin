@@ -48,14 +48,13 @@ public class CheckoutActivity extends AppCompatActivity implements MockActionCal
         attachListeners();
         //final Intent i = new Intent(CheckoutActivity.this, PostOrderActivity.class);
 
-        RecyclerView rv = (RecyclerView) findViewById(R.id.rv);
+        RecyclerView rv = (RecyclerView) findViewById(R.id.recycler_view_checkout);
 
 
         LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
         rv.setLayoutManager(llm);
 
         List<Checkout> myOrders = new ArrayList<Checkout>();
-
 
         SharedPrefsHelper mSharedPrefsHelper = new SharedPrefsHelper(this);
         Map<Integer, Integer> orders = mSharedPrefsHelper.getOrder();
@@ -70,8 +69,8 @@ public class CheckoutActivity extends AppCompatActivity implements MockActionCal
 //        mSharedPrefsHelper.clear();
 
         Order myOrder = new Order(myOrders);
-        CheckoutActivityAdapter cAv = new CheckoutActivityAdapter(myOrder.getOrderList());
-        rv.setAdapter(cAv);
+        CheckoutActivityAdapter adapter = new CheckoutActivityAdapter(myOrder.getOrderList());
+        rv.setAdapter(adapter);
         final TextView totalPrice = (TextView) findViewById(R.id.totalPrice);
         totalPrice.setText(String.valueOf("$" + myOrder.getTotalPrice()));
     }

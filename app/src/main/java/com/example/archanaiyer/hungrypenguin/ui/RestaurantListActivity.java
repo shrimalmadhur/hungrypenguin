@@ -6,8 +6,6 @@ import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.os.Parcelable;
-import android.content.Intent;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,7 +32,7 @@ public class RestaurantListActivity extends AppCompatActivity {
     private RecyclerView rv;
     //final LinearLayoutManager llm;
     RVSampleAdapter adapter;
-    List<Restaurant> restaurants;
+//    List<Restaurant> restaurants;
     private final String TAG = "RestaurantListActivity";
 
     //NFC stuff
@@ -51,7 +49,7 @@ public class RestaurantListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_list);
 
-        DrawerLayout d = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        DrawerLayout d = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView)findViewById(R.id.navList);
         addDrawerItems();
 
@@ -85,8 +83,8 @@ public class RestaurantListActivity extends AppCompatActivity {
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
 
-        RestaurantData rd = new RestaurantData();
-        List<Restaurant> restaurants = rd.getRestaurants();
+//        RestaurantData rd = new RestaurantData();
+        List<Restaurant> restaurants = RestaurantData.getRestaurants();
 
         adapter = new RVSampleAdapter(restaurants, this);
         //adapter.setItemClickListener(this);
@@ -113,7 +111,7 @@ public class RestaurantListActivity extends AppCompatActivity {
 
     private void addDrawerItems() {
         String[] osArray = { "Android", "iOS", "Windows", "OS X", "Linux" };
-        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
+        mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, osArray);
         mDrawerList.setAdapter(mAdapter);
     }
 
@@ -139,9 +137,9 @@ public class RestaurantListActivity extends AppCompatActivity {
                 }
             } else {
                 // Unknown tag type
-                byte[] empty = new byte[0];
-                byte[] id = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
-                Parcelable tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+//                byte[] empty = new byte[0];
+//                byte[] id = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
+//                Parcelable tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
 
                 Log.d(TAG, "NFC discovered");
                 Intent i = new Intent(this, RestaurantDetailActivity.class);
@@ -174,11 +172,10 @@ public class RestaurantListActivity extends AppCompatActivity {
         if (mNfcAdapter != null) {
             if (!mNfcAdapter.isEnabled()) {
                 //showWirelessSettingsDialog();
-                Log.d(TAG, "NFC Adater is NOT ENABLED");
+                Log.d(TAG, "NFC Adapter is NOT ENABLED");
             }
-            Log.d(TAG, "NFC Adater is ENABLED in ONRESUME");
+            Log.d(TAG, "NFC Adapter is ENABLED in ONRESUME");
             mNfcAdapter.enableForegroundDispatch(this, mPendingIntent, null, null);
-            mNfcAdapter.enableForegroundNdefPush(this, mNdefPushMessage);
         }
     }
 
@@ -187,7 +184,6 @@ public class RestaurantListActivity extends AppCompatActivity {
         super.onPause();
         if (mNfcAdapter != null) {
             mNfcAdapter.disableForegroundDispatch(this);
-            mNfcAdapter.disableForegroundNdefPush(this);
         }
     }
 
