@@ -44,6 +44,16 @@ public class User implements Serializable {
 		json.put("facebookId", facebookId);
 		return json;
 	}
+	
+	public void fromJson(JSONObject json) {
+		setId(json.getInt("id"));
+		setUsername(json.getString("username"));
+		setFirstName(json.getString("firstName"));
+		setLastName(json.getString("lastName"));
+		setPassword(json.getString("password"));
+		setEmail(json.getString("email"));
+		setFacebookId(json.getString("facebookId"));
+	}
 
 	public String getUsername() {
 		return username;
