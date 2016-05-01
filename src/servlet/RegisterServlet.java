@@ -40,11 +40,11 @@ public class RegisterServlet extends HttpServlet {
 
 		User user = new User(username, firstName, lastName, password, username, facebookId);
 		db.insert(user);
-		
+		System.out.println(user);
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 		
-		out.print(user.toString());
+		out.print(user.toJson());
 		out.flush();
 
 	}

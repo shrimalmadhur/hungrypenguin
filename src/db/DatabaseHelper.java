@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,6 +42,12 @@ public abstract class DatabaseHelper<T> {
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 		}
+	}
+	
+	public T getById(int id) {
+		Map<String, String> criteria = new HashMap<>();
+		criteria.put(KEY_ID, String.valueOf(id));
+		return select(criteria);
 	}
 	
 	public abstract void createTable();

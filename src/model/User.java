@@ -7,6 +7,8 @@ package model;
 
 import java.io.Serializable;
 
+import org.json.JSONObject;
+
 public class User implements Serializable {
 
 	/**
@@ -29,6 +31,18 @@ public class User implements Serializable {
 		this.password = password;
 		this.email = email;
 		this.facebookId = facebookId;
+	}
+	
+	public JSONObject toJson() {
+		JSONObject json = new JSONObject();
+		json.put("id", id);
+		json.put("username", username);
+		json.put("firstName", firstName);
+		json.put("lastName", lastName);
+		json.put("password", password);
+		json.put("email", email);
+		json.put("facebookId", facebookId);
+		return json;
 	}
 
 	public String getUsername() {

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
+
 import db.UserDatabaseHelper;
 import model.User;
 
@@ -38,16 +40,17 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 
 		User user = db.authenticate(username, password);
-		String res = "";
+		JSONObject json = new JSONObject();
+		
 		if (user == null) {
-			res = "{error: true, user: null}";
+			json.put("error", "No such user");
 		} else {
-			res = "{error: false, user: " + user.toString() + "}";
+			json.put("user", user.toJson());
 		}
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 		
-		out.print(res);
+		out.print(json);
 		out.flush();
 	}
 
