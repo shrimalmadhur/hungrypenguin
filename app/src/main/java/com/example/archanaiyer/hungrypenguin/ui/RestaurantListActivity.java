@@ -6,6 +6,7 @@ import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.os.Parcelable;
+import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,6 +41,7 @@ public class RestaurantListActivity extends AppCompatActivity {
     private NfcAdapter mNfcAdapter;
     private PendingIntent mPendingIntent;
     private NdefMessage mNdefPushMessage;
+
 
     private ListView mDrawerList;
     private ArrayAdapter<String> mAdapter;
@@ -193,5 +195,6 @@ public class RestaurantListActivity extends AppCompatActivity {
     public void onNewIntent(Intent intent) {
         setIntent(intent);
         resolveIntent(intent);
+
     }
 }
