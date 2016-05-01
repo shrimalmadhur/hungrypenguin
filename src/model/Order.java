@@ -5,13 +5,22 @@
 
 package model;
 
-public class Order {
+import java.io.Serializable;
 
+public class Order implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private int userId;
 	private int restaurantId;
 	private float totalCost;
-
+	
+	private User user;
+	private Restaurant restaurant;
+	
 	public Order(int id, int userId, int restaurantId, float totalCost) {
 		super();
 		this.id = id;
@@ -52,4 +61,20 @@ public class Order {
 		this.totalCost = totalCost;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
+	
 }

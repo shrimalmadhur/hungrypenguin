@@ -5,12 +5,21 @@
 
 package model;
 
-public class Review {
+import java.io.Serializable;
 
+public class Review implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String review;
 	private String userId;
 	private String dishId;
+	
+	private User user;
+	private Dish dish;
 
 	public Review(int id, String review, String userId, String dishId) {
 		super();
@@ -50,6 +59,22 @@ public class Review {
 
 	public void setDishId(String dishId) {
 		this.dishId = dishId;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Dish getDish() {
+		return dish;
+	}
+
+	public void setDish(Dish dish) {
+		this.dish = dish;
 	}
 
 }

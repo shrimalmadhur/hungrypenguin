@@ -5,11 +5,20 @@
 
 package model;
 
-public class OrderDish {
+import java.io.Serializable;
 
+public class OrderDish implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private int orderId;
 	private int dishId;
+	
+	private Order order;
+	private Dish dish;
 
 	public OrderDish(int orderId, int dishId) {
 		super();
@@ -39,6 +48,22 @@ public class OrderDish {
 
 	public void setDishId(int dishId) {
 		this.dishId = dishId;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	public Dish getDish() {
+		return dish;
+	}
+
+	public void setDish(Dish dish) {
+		this.dish = dish;
 	}
 
 }
