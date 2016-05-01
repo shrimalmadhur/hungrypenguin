@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.archanaiyer.hungrypenguin.entities.User;
 import com.example.archanaiyer.hungrypenguin.ui.LoginActivity;
 import com.example.archanaiyer.hungrypenguin.ui.RestaurantListActivity;
 import com.loopj.android.http.*;
@@ -111,11 +112,17 @@ public class RemoteService {
         });
     }
 
-    public static void register(String username, String password, final Context context) {
+    public static void register(User user, final Context context) {
         SyncHttpClient client = new SyncHttpClient();
+
         RequestParams params = new RequestParams();
-        params.add("username", username);
-        params.add("password", password);
+        params.add("username", user.getUsername());
+        params.add("password", user.getPassword());
+        params.add("firstname", user.getFirstName());
+        params.add("lastname", user.getLastName());
+        params.add("email", user.getEmail());
+        params.add("facebookId", user.getFacebookId());
+
         client.post(NetworkUtils.getEndPoint(NetworkConstants.REGISTER), params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {

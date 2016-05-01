@@ -13,6 +13,8 @@
     <!-- Strings related to login -->
     <string name="prompt_email">Enter Email</string>
     <string name="prompt_password">Enter Password</string>
+    <string name="prompt_firstname">Enter First Name</string>
+    <string name="prompt_lastname">Enter Last Name</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>

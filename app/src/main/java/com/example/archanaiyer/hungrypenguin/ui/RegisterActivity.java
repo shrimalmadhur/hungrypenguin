@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.archanaiyer.hungrypenguin.R;
+import com.example.archanaiyer.hungrypenguin.entities.User;
 import com.example.archanaiyer.hungrypenguin.util.ValidationHelper;
 import com.example.archanaiyer.hungrypenguin.ws.remote.RemoteService;
 
@@ -16,6 +17,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText mUserName;
     private EditText mPassword;
+    private EditText mFirstName;
+    private EditText mLastName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +32,13 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mUserName = (EditText) findViewById(R.id.register_username);
                 mPassword = (EditText) findViewById(R.id.register_password);
+                mFirstName = (EditText) findViewById(R.id.register_firstname);
+                mLastName = (EditText) findViewById(R.id.register_lastname);
 
                 String username = mUserName.getText().toString();
                 String password = mPassword.getText().toString();
+                String firstName = mFirstName.getText().toString();
+                String lastName = mLastName.getText().toString();
 
                 if (!TextUtils.isEmpty(password) && !ValidationHelper.isPasswordValid(password)) {
                     mPassword.setError(getString(R.string.error_invalid_password));
@@ -50,8 +57,20 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
+                if(!TextUtils.isEmpty(firstName)){
+                    mFirstName.setError("This field is required");
+                    mFirstName.requestFocus();
+                }
 
-                RemoteService.register(username, password, mContext);
+                if(!TextUtils.isEmpty(lastName)){
+                    mLastName.setError("This field is required");
+                    mLastName.requestFocus();
+                }
+
+                User user = new User(username, firstName, lastName, password, username, null);
+
+
+                RemoteService.register(user,  mContext);
             }
         });
     }
