@@ -64,5 +64,23 @@ public class SQLiteJDBCTest {
 		User user = db.select(criteria);
 		assertEquals(null, user);
 	}
+	
+	@Test
+	public void testNullFieldUser() {
+		User u = new User("test6543@test", "user475", "user2", "pass432", "test6543@test", null);
+		db.insert(u);
+		
+		Map<String, String> criteria = new HashMap<String, String>();
+		if (u.getUsername() != null) criteria.put(UserDatabaseHelper.KEY_USER_USERNAME, u.getUsername());
+		if (u.getFirstName() != null) criteria.put(UserDatabaseHelper.KEY_USER_FIRST_NAME, u.getFirstName());
+		if (u.getLastName() != null) criteria.put(UserDatabaseHelper.KEY_USER_LAST_NAME, u.getLastName());
+		if (u.getPassword() != null) criteria.put(UserDatabaseHelper.KEY_USER_PASSWORD, u.getPassword());
+		if (u.getFacebookId() != null) criteria.put(UserDatabaseHelper.KEY_USER_FACEBOOK_ID, u.getFacebookId());
+		if (u.getEmail() != null) criteria.put(UserDatabaseHelper.KEY_USER_EMAIL, u.getEmail());
+		User user = db.select(criteria);
+		
+		assertEquals(u, user);
+		db.delete(u);
+	}
 
 }

@@ -63,7 +63,7 @@ public class UserDatabaseHelper extends DatabaseHelper<User> {
 			stmt.setString(5, object.getFacebookId());
 			stmt.setString(6, object.getEmail());
 
-			stmt.executeUpdate();
+			int rows = stmt.executeUpdate();
 
 			stmt.close();
 			this.closeConnection(c);
@@ -78,17 +78,16 @@ public class UserDatabaseHelper extends DatabaseHelper<User> {
 
 	private void getRecentlyCreatedObject(User object) {
 		Map<String, String> criteria = new HashMap<String, String>();
-		criteria.put(KEY_USER_USERNAME, object.getUsername());
-		criteria.put(KEY_USER_FIRST_NAME, object.getFirstName());
-		criteria.put(KEY_USER_LAST_NAME, object.getLastName());
-		criteria.put(KEY_USER_PASSWORD, object.getPassword());
-		criteria.put(KEY_USER_FACEBOOK_ID, object.getFacebookId());
-		criteria.put(KEY_USER_EMAIL, object.getEmail());
+		if (object.getUsername() != null) criteria.put(KEY_USER_USERNAME, object.getUsername());
+		if (object.getFirstName() != null) criteria.put(KEY_USER_FIRST_NAME, object.getFirstName());
+		if (object.getLastName() != null) criteria.put(KEY_USER_LAST_NAME, object.getLastName());
+		if (object.getPassword() != null) criteria.put(KEY_USER_PASSWORD, object.getPassword());
+		if (object.getFacebookId() != null) criteria.put(KEY_USER_FACEBOOK_ID, object.getFacebookId());
+		if (object.getEmail() != null) criteria.put(KEY_USER_EMAIL, object.getEmail());
 
-		List<User> users = selectAll(criteria);
-		if (users.size() > 0) {
-			User u = users.get(0);
-			object.setId(u.getId());
+		User user = select(criteria);
+		if (user != null) {
+			object.setId(user.getId());
 		}
 	}
 
@@ -223,65 +222,16 @@ public class UserDatabaseHelper extends DatabaseHelper<User> {
 	
 	@Override
 	public User select(Map<String, String> criteria) {
-		User res = null;
-		try {
-			Connection c = this.openConncetion();
-			
-			StringBuilder sb = new StringBuilder();
-			sb.append("SELECT * FROM ");
-			sb.append(TABLE_USER);
-			
-			String[] keys = null;
-			if (criteria != null && criteria.size() > 0) {
-				sb.append(" WHERE ");
-				keys = new String[criteria.size()];
-				
-				int i = 0;
-				Iterator<Map.Entry<String, String>> it = criteria.entrySet().iterator();
-				while (it.hasNext()) {
-					Map.Entry<String, String> pair = (Map.Entry<String, String>) it.next();
-					sb.append(pair.getKey() + " = ?");
-					keys[i] = pair.getKey();
-					i++;
-					if (it.hasNext()) {
-						sb.append(" AND ");
-					}
-				}
-			}
-			sb.append(";");
-			
-			PreparedStatement stmt = c.prepareStatement(sb.toString());
-			if (keys != null) {
-				for (int i = 0; i < keys.length; i++) {
-					stmt.setString(i + 1, criteria.get(keys[i]));
-				}
-			}
-			
-			ResultSet rs = stmt.executeQuery();
-			
-			while (rs.next()) {
-				int id = rs.getInt(KEY_ID);
-				String username = rs.getString(KEY_USER_USERNAME);
-				String firstName = rs.getString(KEY_USER_FIRST_NAME);
-				String lastName = rs.getString(KEY_USER_LAST_NAME);
-				String password = rs.getString(KEY_USER_PASSWORD);
-				String facebookId = rs.getString(KEY_USER_FACEBOOK_ID);
-				String email = rs.getString(KEY_USER_EMAIL);
-				User u = new User(username, firstName, lastName, password, email, facebookId);
-				u.setId(id);
-				res = u;
-			}
-			rs.close();
-			stmt.close();
-			
-			this.closeConnection(c);
-		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.exit(0);
-		}
-		System.out.println("Operation done successfully");
-		
-		return res;
+		List<User> users = this.selectAll(criteria);
+		if (users.size() > 0) return users.get(0);
+		return null;
+	}
+	
+	public User authenticate(String username, String password) {
+		Map<String, String> criteria = new HashMap<>();
+		criteria.put(KEY_USER_USERNAME, username);
+		criteria.put(KEY_USER_PASSWORD, password);
+		return this.select(criteria);
 	}
 
 	@Override
