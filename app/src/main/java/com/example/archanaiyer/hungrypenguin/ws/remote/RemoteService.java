@@ -253,7 +253,7 @@ public class RemoteService {
 
 
     public static void getOrdersHistory(final Context context, String username) {
-        SyncHttpClient client = new SyncHttpClient();
+        AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.add("username", username);
         client.get(NetworkUtils.getEndPoint(NetworkConstants.HISTORY), params, new AsyncHttpResponseHandler() {
@@ -305,11 +305,12 @@ public class RemoteService {
     }
 
 
-    public static void sendReview(int dishId, String review) {
-        SyncHttpClient client = new SyncHttpClient();
+    public static void sendReview(int dishId, String review, String username) {
+        AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.add("id", String.valueOf(dishId));
         params.add("review", review);
+        params.add("username", username);
         client.post(NetworkUtils.getEndPoint(NetworkConstants.REVIEW), params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
