@@ -10,6 +10,17 @@
     <string name="action_profile">Profile</string>
     <string name="action_order_history">Order History</string>
     <string name="action_logout">Logout</string>
+    <string name="call_human">Call a Human!</string>
+    <string name="review">Leave a review</string>
+    <string name="pay_bill">Pay Bill</string>
+    <string name="profile_email">EMAIL: user123@gmail.com</string>
+    <string name="restaurant1">The Sandwich Spot</string>
+    <string name="restaurant2">Bibimbowl</string>
+    <string name="dish1">Croissaint</string>
+    <string name="dish2">Bagel</string>
+    <string name="dish3">Noodles</string>
+    <string name="title">Title</string>
+    <string name="dishNameText">dishname</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Enter Email</string>

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#d3d3d3"
-    tools:context="com.ama.hungrypenguin.DishListFragment">
+    tools:context="com.example.archanaiyer.hungrypenguin.ui.DishListFragment">
 
     <include layout="@layout/recyclerview" />
 

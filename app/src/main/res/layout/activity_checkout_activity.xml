@@ -30,7 +30,6 @@
                 android:layout_marginRight="@dimen/activity_vertical_margin"
                 android:layout_marginTop="10dp"
                 android:gravity="end"
-                android:text="$36.50"
                 android:textAlignment="viewEnd"
                 android:textSize="25dp" />
 

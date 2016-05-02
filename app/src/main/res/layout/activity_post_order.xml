@@ -16,7 +16,7 @@
         android:layout_height="100dp"
         android:layout_margin="10dp"
         android:onClick="callHuman"
-        android:text="Call a Human!" />
+        android:text="@string/call_human" />
 
     <Button
         android:id="@+id/leave_review"
@@ -24,7 +24,7 @@
         android:layout_height="100dp"
         android:layout_margin="10dp"
         android:onClick="leaveReview"
-        android:text="Leave Review" />
+        android:text="@string/review" />
 
     <Button
         android:id="@+id/pay_bill"
@@ -32,6 +32,6 @@
         android:layout_height="100dp"
         android:layout_margin="10dp"
         android:onClick="payBill"
-        android:text="Pay Bill" />
+        android:text="@string/pay_bill" />
 
 </LinearLayout>
