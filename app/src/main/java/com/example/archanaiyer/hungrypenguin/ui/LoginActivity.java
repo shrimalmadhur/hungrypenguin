@@ -98,8 +98,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Intent intent = new Intent(getApplicationContext(), RestaurantListActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getApplicationContext(), RestaurantListActivity.class);
+//                startActivity(intent);
+                RemoteService.getAllRestaurants(getApplicationContext());
             }
 
             @Override

@@ -20,7 +20,7 @@ public class NetworkConstants {
     // endpoints
     public static final String LOGIN = "login";
     public static final String ALL_RESTAURANTS = "restaurants";
-    public static final String RESTAURANT = "restaurant";
+    public static final String RESTAURANT = "restaurant/menu";
     public static final String REGISTER = "register";
     public static final String PROFILE = "profile";
     public static final String HISTORY = "history";

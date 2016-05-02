@@ -64,7 +64,7 @@ public class RestaurantListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // get restautantsList from Intent
+        // get restaurants List from Intent
         RestaurantList rList = (RestaurantList) getIntent().getExtras().get("restaurants");
         restaurants = rList.getRestaurantList();
 

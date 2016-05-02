@@ -61,6 +61,7 @@ public class RemoteService {
                     SharedPreferences sPref = context.getSharedPreferences("user", 0);
                     SharedPreferences.Editor editor = sPref.edit();
                     editor.putString("user", u.toJson().toString());
+                    editor.commit();
 
                     // call all restaurants
                     RemoteService.getAllRestaurants(context);
@@ -101,7 +102,12 @@ public class RemoteService {
                     // TODO: prepare this list from responseObj
                     List<Restaurant> restaurantList = new ArrayList<Restaurant>();
                     for(int i=0; i < responseObj.length(); i++) {
-                        restaurantList.add((Restaurant) responseObj.get(i));
+                        JSONObject obj = responseObj.getJSONObject(i);
+
+                        Restaurant r = new Restaurant(obj.getString("name"), obj.getString("address")
+                            , obj.getString("image"), obj.getString("dollar"));
+                        r.setId(obj.getInt("id"));
+                        restaurantList.add(r);
                     }
                     RestaurantList rList = new RestaurantList(restaurantList);
                     Intent intent = new Intent(context, RestaurantListActivity.class);
@@ -131,17 +137,29 @@ public class RemoteService {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.add("id", String.valueOf(restaurantId));
+        Log.d(TAG, "Restaurant ID: " + restaurantId);
         client.get(NetworkUtils.getEndPoint(NetworkConstants.RESTAURANT), params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 
                 String responseString = new String(responseBody);
                 try {
-                    JSONObject responseObj = new JSONObject(responseString);
+                    JSONArray responseObj = new JSONArray(responseString);
                     // TODO: get Dishes from response
 
                     // dynamic dish data
                     List<Dish> dishes = new ArrayList<Dish>();
+                    for(int i=0; i < responseObj.length(); i++) {
+                        JSONObject jObj = responseObj.getJSONObject(i);
+                        Dish d = new Dish(jObj.getInt("id"),
+                                jObj.getString("image"),
+                                jObj.getString("name"),
+                                jObj.getDouble("price"),
+                                null,
+                                jObj.getInt("rating"));
+                        dishes.add(d);
+                    }
+
                     DishData dishData = new DishData(dishes);
 
                     Intent intent = new Intent(context, RestaurantDetailActivity.class);

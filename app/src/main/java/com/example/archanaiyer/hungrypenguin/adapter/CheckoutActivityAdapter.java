@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.archanaiyer.hungrypenguin.R;
 import com.example.archanaiyer.hungrypenguin.entities.Checkout;
 
@@ -63,10 +64,11 @@ public class CheckoutActivityAdapter extends RecyclerView.Adapter<CheckoutActivi
         holder.name.setText(currDish.name);
         holder.cost.setText("$" + String.valueOf(currDish.cost));
 
-        Uri uri = Uri.parse(currDish.imageUrl);
 
-        final Context mContext = holder.imageUrl.getContext();
-        Glide.with(mContext).load(uri).asGif().into(holder.imageUrl);
+        Glide.with(holder.itemView.getContext())
+                .load(currDish.imageUrl)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .into(holder.imageUrl);
 
         holder.quantity.setText(String.valueOf(currDish.qty));
     }

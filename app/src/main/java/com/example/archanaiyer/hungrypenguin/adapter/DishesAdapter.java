@@ -52,7 +52,7 @@ public class DishesAdapter extends RecyclerView.Adapter<DishesAdapter.ViewHolder
         holder.title.setTag(dish.id);
         holder.title.setText(dish.name);
         holder.cost.setText(Double.toString(dish.cost));
-        holder.cost.setTag(dish.id);
+        holder.cost.setTag(position);
         holder.stats.setText(dish.trendingStats + " Penguins bought this");
 
         int qty = sharedPrefsHelper.getValue(dish.id);
