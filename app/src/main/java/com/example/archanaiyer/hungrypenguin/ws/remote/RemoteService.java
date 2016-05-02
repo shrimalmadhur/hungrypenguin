@@ -303,35 +303,31 @@ public class RemoteService {
     }
 
     public static void getDishDetails(final Context context, int dishId) {
-        SyncHttpClient client = new SyncHttpClient();
+        AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.add("id", String.valueOf(dishId));
         client.get(NetworkUtils.getEndPoint(NetworkConstants.DISH), params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String responseString = new String(responseBody);
+                Dish d = null;
                 try {
-                    JSONArray responseObj = new JSONArray(responseString);
+                    JSONObject object = new JSONObject(responseString);
 
-                    // dynamic dish data
-                    List<Dish> dishes = new ArrayList<Dish>();
-                    for (int i = 0; i < responseObj.length(); i++) {
-                        JSONObject jObj = responseObj.getJSONObject(i);
-                        Dish d = new Dish(jObj.getInt("id"),
-                                jObj.getString("image"),
-                                jObj.getString("name"),
-                                jObj.getDouble("price"),
-                                null,
-                                jObj.getInt("rating"));
-                        dishes.add(d);
-                    }
-
-                    Intent intent = new Intent(context, FoodDetailActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);
+                    d = new Dish(object.getInt("id"),
+                            object.getString("image"),
+                            object.getString("name"),
+                            object.getDouble("price"),
+                            null,
+                            object.getInt("rating"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+                Intent intent = new Intent(context, FoodDetailActivity.class);
+                intent.putExtra("dish", d);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
             }
 
             @Override

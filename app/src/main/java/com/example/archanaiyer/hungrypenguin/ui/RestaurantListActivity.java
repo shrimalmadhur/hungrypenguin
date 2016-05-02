@@ -17,11 +17,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.archanaiyer.hungrypenguin.R;
 import com.example.archanaiyer.hungrypenguin.adapter.RVSampleAdapter;
-import com.example.archanaiyer.hungrypenguin.data.RestaurantData;
 import com.example.archanaiyer.hungrypenguin.entities.Restaurant;
 import com.example.archanaiyer.hungrypenguin.entities.RestaurantList;
 import com.example.archanaiyer.hungrypenguin.entities.User;
@@ -57,7 +55,6 @@ public class RestaurantListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_list);
 
-//        DrawerLayout d = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView)findViewById(R.id.navList);
         addDrawerItems();
 

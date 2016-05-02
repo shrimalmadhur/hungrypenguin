@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.ama.hungrypenguin.ui.FoodDetailActivity"
+    tools:context="com.example.archanaiyer.hungrypenguin.ui.FoodDetailActivity"
     tools:showIn="@layout/activity_food_detail">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/dish_image"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_alignParentTop="true"
@@ -21,7 +21,7 @@
         android:id="@+id/linear2"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/imageView"
+        android:layout_below="@+id/dish_image"
         android:orientation="vertical">
 
         <TextView
@@ -44,7 +44,7 @@
             android:background="@android:color/darker_gray" />
 
         <RatingBar
-            android:id="@+id/ratingBar"
+            android:id="@+id/rating_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
