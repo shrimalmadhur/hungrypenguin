@@ -7,7 +7,12 @@ package model;
 
 import java.io.Serializable;
 
-public class Order implements Serializable {
+import org.json.JSONObject;
+
+import db.RestaurantDatabaseHelper;
+import db.UserDatabaseHelper;
+
+public class Order extends Entity implements Serializable {
 
 	/**
 	 * 
@@ -16,19 +21,58 @@ public class Order implements Serializable {
 	private int id;
 	private int userId;
 	private int restaurantId;
-	private float totalCost;
+	private double totalCost;
 	
 	private User user;
 	private Restaurant restaurant;
 	
-	public Order(int id, int userId, int restaurantId, float totalCost) {
+	public Order(int userId, int restaurantId, double totalCost) {
 		super();
-		this.id = id;
 		this.userId = userId;
 		this.restaurantId = restaurantId;
 		this.totalCost = totalCost;
+		
+		retrieveRestaurantInstance();
+		retrieveUserInstance();
+	}
+	
+	public Order() {
+	}
+	
+	private void retrieveRestaurantInstance() {
+		RestaurantDatabaseHelper restaurantDb = new RestaurantDatabaseHelper();
+		restaurant = restaurantDb.getById(restaurantId);
+	}
+	
+	private void retrieveUserInstance() {
+		UserDatabaseHelper userDb = new UserDatabaseHelper();
+		user = userDb.getById(userId);
 	}
 
+	public JSONObject toJson() {
+		JSONObject json = new JSONObject();
+		json.put("id", id);
+		json.put("totalCost", totalCost);
+		json.put("user", this.user.toJson());
+		json.put("restaurant", this.restaurant.toJson());
+		return json;
+	}
+	
+	public void fromJson(JSONObject json) {
+		setId(json.getInt("id"));
+		setTotalCost(json.getDouble("totalCost"));
+		JSONObject uJson = json.getJSONObject("user");
+		JSONObject rJson = json.getJSONObject("restaurant");
+		
+		if (user == null) user = new User();
+		user.fromJson(uJson);
+		this.userId = user.getId();
+		
+		if (restaurant == null) restaurant = new Restaurant();
+		restaurant.fromJson(rJson);
+		this.restaurantId = restaurant.getId();
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -43,6 +87,7 @@ public class Order implements Serializable {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+		retrieveUserInstance();
 	}
 
 	public int getRestaurantId() {
@@ -51,13 +96,14 @@ public class Order implements Serializable {
 
 	public void setRestaurantId(int restaurantId) {
 		this.restaurantId = restaurantId;
+		retrieveRestaurantInstance();
 	}
 
-	public float getTotalCost() {
+	public double getTotalCost() {
 		return totalCost;
 	}
 
-	public void setTotalCost(float totalCost) {
+	public void setTotalCost(double totalCost) {
 		this.totalCost = totalCost;
 	}
 
@@ -67,6 +113,7 @@ public class Order implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+		this.userId = user.getId();
 	}
 
 	public Restaurant getRestaurant() {
@@ -75,6 +122,7 @@ public class Order implements Serializable {
 
 	public void setRestaurant(Restaurant restaurant) {
 		this.restaurant = restaurant;
+		this.restaurantId = restaurant.getId();
 	}
 	
 }

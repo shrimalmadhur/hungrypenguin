@@ -7,7 +7,9 @@ package model;
 
 import java.io.Serializable;
 
-public class OrderDish implements Serializable {
+import org.json.JSONObject;
+
+public class OrderDish extends Entity implements Serializable {
 
 	/**
 	 * 
@@ -64,6 +66,28 @@ public class OrderDish implements Serializable {
 
 	public void setDish(Dish dish) {
 		this.dish = dish;
+	}
+
+	@Override
+	public JSONObject toJson() {
+		JSONObject json = new JSONObject();
+		json.put("id", id);
+		json.put("dish", dish.toJson());
+		json.put("order", order.toJson());
+		return json;
+	}
+
+	@Override
+	public void fromJson(JSONObject json) {
+		setId(json.getInt("id"));
+		
+		if (dish == null) dish = new Dish();
+		dish.fromJson(json.getJSONObject("dish"));
+		this.dishId = dish.getId();
+		
+		if (order == null) order = new Order();
+		order.fromJson(json.getJSONObject("order"));
+		this.orderId = order.getId();
 	}
 
 }

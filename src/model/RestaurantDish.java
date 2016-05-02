@@ -7,7 +7,12 @@ package model;
 
 import java.io.Serializable;
 
-public class RestaurantDish implements Serializable {
+import org.json.JSONObject;
+
+import db.DishDatabaseHelper;
+import db.RestaurantDatabaseHelper;
+
+public class RestaurantDish extends Entity implements Serializable {
 
 	/**
 	 * 
@@ -24,6 +29,22 @@ public class RestaurantDish implements Serializable {
 		super();
 		this.restaurantId = restaurantId;
 		this.dishId = dishId;
+		
+		retrieveRestaurantInstance();
+		retrieveDishInstance();
+	}
+	
+	public RestaurantDish() {
+	}
+	
+	private void retrieveRestaurantInstance() {
+		RestaurantDatabaseHelper restaurantDb = new RestaurantDatabaseHelper();
+		restaurant = restaurantDb.getById(restaurantId);
+	}
+	
+	private void retrieveDishInstance() {
+		DishDatabaseHelper dishDb = new DishDatabaseHelper();
+		dish = dishDb.getById(dishId);
 	}
 
 	public int getId() {
@@ -40,6 +61,7 @@ public class RestaurantDish implements Serializable {
 
 	public void setRestaurantId(int restaurantId) {
 		this.restaurantId = restaurantId;
+		retrieveRestaurantInstance();
 	}
 
 	public int getDishId() {
@@ -48,6 +70,7 @@ public class RestaurantDish implements Serializable {
 
 	public void setDishId(int dishId) {
 		this.dishId = dishId;
+		retrieveDishInstance();
 	}
 
 	public Restaurant getRestaurant() {
@@ -56,6 +79,7 @@ public class RestaurantDish implements Serializable {
 
 	public void setRestaurant(Restaurant restaurant) {
 		this.restaurant = restaurant;
+		this.restaurantId = restaurant.getId();
 	}
 
 	public Dish getDish() {
@@ -64,6 +88,29 @@ public class RestaurantDish implements Serializable {
 
 	public void setDish(Dish dish) {
 		this.dish = dish;
+		this.dishId = dish.getId();
+	}
+
+	@Override
+	public JSONObject toJson() {
+		JSONObject json = new JSONObject();
+		json.put("id", id);
+		json.put("dish", dish.toJson());
+		json.put("restaurant", restaurant.toJson());
+		return json;
+	}
+
+	@Override
+	public void fromJson(JSONObject json) {
+		setId(json.getInt("id"));
+		
+		if (dish == null) dish = new Dish();
+		dish.fromJson(json.getJSONObject("dish"));
+		this.dishId = dish.getId();
+		
+		if (restaurant == null) restaurant = new Restaurant();
+		restaurant.fromJson(json.getJSONObject("restaurant"));
+		this.restaurantId = restaurant.getId();
 	}
 
 }

@@ -7,7 +7,9 @@ package model;
 
 import java.io.Serializable;
 
-public class Dish implements Serializable{
+import org.json.JSONObject;
+
+public class Dish extends Entity implements Serializable{
 
 	/**
 	 * 
@@ -19,12 +21,14 @@ public class Dish implements Serializable{
 	private String image;
 	private double rating;
 
-	public Dish(int id, String name, double price, String image) {
+	public Dish(String name, double price, String image) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.image = image;
+	}
+	
+	public Dish() {
 	}
 
 	public int getId() {
@@ -65,6 +69,26 @@ public class Dish implements Serializable{
 
 	public void setRating(double rating) {
 		this.rating = rating;
+	}
+
+	@Override
+	public JSONObject toJson() {
+		JSONObject json = new JSONObject();
+		json.put("id", id);
+		json.put("name", name);
+		json.put("price", price);
+		json.put("image", image);
+		json.put("rating", rating);
+		return json;
+	}
+
+	@Override
+	public void fromJson(JSONObject json) {
+		setId(json.getInt("id"));
+		setName(json.getString("name"));
+		setPrice(json.getDouble("price"));
+		setImage(json.getString("image"));
+		setRating(json.getDouble("rating"));
 	}
 
 }

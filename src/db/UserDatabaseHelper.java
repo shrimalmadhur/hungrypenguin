@@ -8,6 +8,7 @@ package db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,20 +64,36 @@ public class UserDatabaseHelper extends DatabaseHelper<User> {
 			stmt.setString(5, object.getFacebookId());
 			stmt.setString(6, object.getEmail());
 
-			int rows = stmt.executeUpdate();
+			stmt.executeUpdate();
+
+			getRecentlyCreatedObject(object, c);
 
 			stmt.close();
 			this.closeConnection(c);
 
-			getRecentlyCreatedObject(object);
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.exit(0);
+			e.printStackTrace();
 		}
 		System.out.println("Records created successfully");
 	}
 
-	private void getRecentlyCreatedObject(User object) {
+	private void getRecentlyCreatedObject(User object, Connection c) throws SQLException {
+//		StringBuilder sb = new StringBuilder();
+//		sb.append("SELECT last_insert_rowid() AS rowid FROM ");
+//		sb.append(TABLE_USER);
+//		sb.append(" LIMIT 1;");
+//
+//		PreparedStatement stmt = c.prepareStatement(sb.toString());
+//		ResultSet rs = stmt.executeQuery();
+//
+//		while (rs.next()) {
+//			int id = rs.getInt(KEY_ID);
+//			object.setId(id);
+//		}
+//		rs.close();
+//		stmt.close();
+		
+		
 		Map<String, String> criteria = new HashMap<String, String>();
 		if (object.getUsername() != null) criteria.put(KEY_USER_USERNAME, object.getUsername());
 		if (object.getFirstName() != null) criteria.put(KEY_USER_FIRST_NAME, object.getFirstName());
@@ -125,8 +142,7 @@ public class UserDatabaseHelper extends DatabaseHelper<User> {
 			stmt.close();
 			this.closeConnection(c);
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.exit(0);
+			e.printStackTrace();
 		}
 		System.out.println("Operation done successfully");
 
@@ -151,8 +167,7 @@ public class UserDatabaseHelper extends DatabaseHelper<User> {
 			stmt.close();
 			c.close();
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.exit(0);
+			e.printStackTrace();
 		}
 		System.out.println("Operation done successfully");
 	}
@@ -184,6 +199,7 @@ public class UserDatabaseHelper extends DatabaseHelper<User> {
 					}
 				}
 			}
+			sb.append(" ORDER BY " + KEY_ID + " DESC");
 			sb.append(";");
 
 			PreparedStatement stmt = c.prepareStatement(sb.toString());
@@ -212,8 +228,7 @@ public class UserDatabaseHelper extends DatabaseHelper<User> {
 
 			this.closeConnection(c);
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.exit(0);
+			e.printStackTrace();
 		}
 		System.out.println("Operation done successfully");
 
@@ -237,6 +252,12 @@ public class UserDatabaseHelper extends DatabaseHelper<User> {
 	@Override
 	public void createTable() {
 		create(CREATE_USER_TABLE);
+	}
+	
+	public User getByUsername(String username) {
+		Map<String, String> criteria = new HashMap<>();
+		criteria.put(UserDatabaseHelper.KEY_USER_USERNAME, username);
+		return this.select(criteria);
 	}
 
 }

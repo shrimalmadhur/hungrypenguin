@@ -7,7 +7,9 @@ package model;
 
 import java.io.Serializable;
 
-public class Review implements Serializable{
+import org.json.JSONObject;
+
+public class Review extends Entity implements Serializable{
 
 	/**
 	 * 
@@ -15,15 +17,14 @@ public class Review implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private String review;
-	private String userId;
-	private String dishId;
+	private int userId;
+	private int dishId;
 	
 	private User user;
 	private Dish dish;
 
-	public Review(int id, String review, String userId, String dishId) {
+	public Review(String review, int userId, int dishId) {
 		super();
-		this.id = id;
 		this.review = review;
 		this.userId = userId;
 		this.dishId = dishId;
@@ -45,19 +46,19 @@ public class Review implements Serializable{
 		this.review = review;
 	}
 
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
-	public String getDishId() {
+	public int getDishId() {
 		return dishId;
 	}
 
-	public void setDishId(String dishId) {
+	public void setDishId(int dishId) {
 		this.dishId = dishId;
 	}
 
@@ -75,6 +76,30 @@ public class Review implements Serializable{
 
 	public void setDish(Dish dish) {
 		this.dish = dish;
+	}
+
+	@Override
+	public JSONObject toJson() {
+		JSONObject json = new JSONObject();
+		json.put("id", id);
+		json.put("review", review);
+		json.put("user", user.toJson());
+		json.put("dish", dish.toJson());
+		return json;
+	}
+
+	@Override
+	public void fromJson(JSONObject json) {
+		setId(json.getInt("id"));
+		setReview(json.getString("review"));
+		
+		if (user == null) user = new User();
+		user.fromJson(json.getJSONObject("user"));
+		this.userId = user.getId();
+		
+		if (dish == null) dish = new Dish();
+		dish.fromJson(json.getJSONObject("dish"));
+		this.dishId = dish.getId();
 	}
 
 }

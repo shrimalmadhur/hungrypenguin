@@ -5,6 +5,13 @@
 
 package db;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -35,26 +42,156 @@ public class RestaurantDishDatabaseHelper extends DatabaseHelper<RestaurantDish>
 	
 	@Override
 	public void insert(RestaurantDish object) {
-		// TODO Auto-generated method stub
-		
+		try {
+			Connection c = this.openConncetion();
+			PreparedStatement stmt = null;
+
+			StringBuilder sb = new StringBuilder();
+			sb.append("INSERT INTO ");
+			sb.append(TABLE_RESTAURANT_DISH + " (");
+			sb.append(KEY_RESTAURANT_ID + ",");
+			sb.append(KEY_DISH_ID + ")");
+			sb.append(" VALUES (?, ?);");
+
+			stmt = c.prepareStatement(sb.toString());
+			stmt.setString(1, String.valueOf(object.getRestaurantId()));
+			stmt.setString(2, String.valueOf(object.getDishId()));
+
+			stmt.executeUpdate();
+
+			stmt.close();
+			this.closeConnection(c);
+			
+			getRecentlyCreatedObject(object);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("Records created successfully");
+	}
+	
+	private void getRecentlyCreatedObject(RestaurantDish object) {
+		Map<String, String> criteria = new HashMap<String, String>();
+		if (object.getRestaurantId() > 0) criteria.put(KEY_RESTAURANT_ID, String.valueOf(object.getRestaurantId()));
+		if (object.getDishId() > 0) criteria.put(KEY_DISH_ID, String.valueOf(object.getDishId()));
+
+		RestaurantDish restaurantDish = select(criteria);
+		if (restaurantDish != null) {
+			object.setId(restaurantDish.getId());
+		}
 	}
 
 	@Override
 	public void update(RestaurantDish object) {
-		// TODO Auto-generated method stub
-		
+		if (object.getId() <= 0)
+			return;
+		try {
+			Connection c = this.openConncetion();
+			PreparedStatement stmt = null;
+
+			StringBuilder sb = new StringBuilder();
+			sb.append("UPDATE ");
+			sb.append(TABLE_RESTAURANT_DISH + " SET ");
+			sb.append(KEY_RESTAURANT_ID + " = ?, ");
+			sb.append(KEY_DISH_ID + " = ?");
+			sb.append(" WHERE ");
+			sb.append("id = ?;");
+
+			stmt = c.prepareStatement(sb.toString());
+			stmt.setString(1, String.valueOf(object.getRestaurantId()));
+			stmt.setString(2, String.valueOf(object.getDishId()));
+
+			stmt.executeUpdate();
+
+			stmt.close();
+			this.closeConnection(c);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("Operation done successfully");
 	}
 
 	@Override
 	public void delete(RestaurantDish object) {
-		// TODO Auto-generated method stub
-		
+		try {
+			Connection c = this.openConncetion();
+
+			StringBuilder sb = new StringBuilder();
+			sb.append("DELETE FROM ");
+			sb.append(TABLE_RESTAURANT_DISH);
+			sb.append(" WHERE ");
+			sb.append(KEY_ID + " = ");
+			sb.append(object.getId());
+			sb.append(";");
+
+			Statement stmt = c.createStatement();
+			stmt.executeUpdate(sb.toString());
+
+			stmt.close();
+			c.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("Operation done successfully");
 	}
 
 	@Override
 	public List<RestaurantDish> selectAll(Map<String, String> criteria) {
-		// TODO Auto-generated method stub
-		return null;
+		List<RestaurantDish> res = new ArrayList<RestaurantDish>();
+		try {
+			Connection c = this.openConncetion();
+
+			StringBuilder sb = new StringBuilder();
+			sb.append("SELECT * FROM ");
+			sb.append(TABLE_RESTAURANT_DISH);
+
+			String[] keys = null;
+			if (criteria != null && criteria.size() > 0) {
+				sb.append(" WHERE ");
+				keys = new String[criteria.size()];
+
+				int i = 0;
+				Iterator<Map.Entry<String, String>> it = criteria.entrySet().iterator();
+				while (it.hasNext()) {
+					Map.Entry<String, String> pair = (Map.Entry<String, String>) it.next();
+					sb.append(pair.getKey() + " = ?");
+					keys[i] = pair.getKey();
+					i++;
+					if (it.hasNext()) {
+						sb.append(" AND ");
+					}
+				}
+			}
+			sb.append(" ORDER BY " + KEY_ID + " DESC");
+			sb.append(";");
+
+			PreparedStatement stmt = c.prepareStatement(sb.toString());
+			if (keys != null) {
+				for (int i = 0; i < keys.length; i++) {
+					stmt.setString(i + 1, criteria.get(keys[i]));
+				}
+			}
+
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				int id = rs.getInt(KEY_ID);
+				int dishId = rs.getInt(KEY_DISH_ID);
+				int restaurantId = rs.getInt(KEY_RESTAURANT_ID);
+				RestaurantDish rd = new RestaurantDish(restaurantId, dishId);
+				rd.setId(id);
+				res.add(rd);
+			}
+			rs.close();
+			stmt.close();
+
+			this.closeConnection(c);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("Operation done successfully");
+
+		return res;
 	}
 
 	@Override
@@ -64,8 +201,15 @@ public class RestaurantDishDatabaseHelper extends DatabaseHelper<RestaurantDish>
 
 	@Override
 	public RestaurantDish select(Map<String, String> criteria) {
-		// TODO Auto-generated method stub
+		List<RestaurantDish> restaurantDishes = this.selectAll(criteria);
+		if (restaurantDishes.size() > 0) return restaurantDishes.get(0);
 		return null;
+	}
+	
+	public List<RestaurantDish> getByRestaurant(int restaurantId) {
+		Map<String, String> criteria = new HashMap<>();
+		criteria.put(KEY_RESTAURANT_ID, String.valueOf(restaurantId));
+		return this.selectAll(criteria);
 	}
 	
 }
