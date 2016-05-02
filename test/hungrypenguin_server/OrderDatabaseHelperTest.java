@@ -33,7 +33,7 @@ public class OrderDatabaseHelperTest {
 		User u = new User("username", "test", "test", "pass", "test@test", "2");
 		userdb.insert(u);
 
-		Restaurant restaurant = new Restaurant("rest1", "lalala", "image");
+		Restaurant restaurant = new Restaurant("rest1", "lalala", "image", "$");
 		restaurantdb.insert(restaurant);
 
 		Order order = new Order(u.getId(), restaurant.getId(), 100.70);

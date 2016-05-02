@@ -193,7 +193,7 @@ public class DishDatabaseHelper extends DatabaseHelper<Dish> {
 				double price = rs.getDouble(KEY_DISH_PRICE);
 				double rating = rs.getDouble(KEY_DISH_RATING);
 				String image = rs.getString(KEY_DISH_IMAGE);
-				Dish d = new Dish(name, price, image);
+				Dish d = new Dish(name, price, image, rating);
 				d.setRating(rating);
 				d.setId(id);
 				res.add(d);

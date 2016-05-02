@@ -19,12 +19,14 @@ public class Restaurant extends Entity implements Serializable {
 	private String name;
 	private String address;
 	private String image;
+	private String dollar;
 
-	public Restaurant(String name, String address, String image) {
+	public Restaurant(String name, String address, String image, String dollar) {
 		super();
 		this.name = name;
 		this.address = address;
 		this.image = image;
+		this.dollar = dollar;
 	}
 	public Restaurant() {
 	}
@@ -35,6 +37,7 @@ public class Restaurant extends Entity implements Serializable {
 		json.put("name", name);
 		json.put("address", address);
 		json.put("image", image);
+		json.put("dollar", dollar);
 		return json;
 	}
 	
@@ -43,6 +46,7 @@ public class Restaurant extends Entity implements Serializable {
 		setName(json.getString("name"));
 		setAddress(json.getString("address"));
 		setImage(json.getString("image"));
+		setDollar(json.getString("dollar"));
 	}
 	
 	public int getId() {
@@ -76,5 +80,13 @@ public class Restaurant extends Entity implements Serializable {
 	public void setImage(String image) {
 		this.image = image;
 	}
+	
+	public String getDollar() {
+        return dollar;
+    }
+
+    public void setDollar(String dollar) {
+        this.dollar = dollar;
+    }
 
 }

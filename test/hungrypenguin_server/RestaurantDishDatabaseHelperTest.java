@@ -28,7 +28,7 @@ public class RestaurantDishDatabaseHelperTest {
 	@Test
 	public void test() {
 
-		Restaurant restaurant = new Restaurant("rest1", "lalala", "image");
+		Restaurant restaurant = new Restaurant("rest1", "lalala", "image", "$");
 		db.insert(restaurant);
 		
 		Map<String, String> criteria = new HashMap<>();

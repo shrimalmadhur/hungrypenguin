@@ -26,12 +26,14 @@ public class RestaurantDatabaseHelper extends DatabaseHelper<Restaurant> {
 	public static final String KEY_RESTAURANT_NAME = "name";
 	public static final String KEY_RESTAURANT_ADDRESS = "address";
 	public static final String KEY_RESTAURANT_IMAGE = "image";
+	public static final String KEY_RESTAURANT_DOLLAR = "dollar";
 
 	private final String CREATE_RESTAURANT_TABLE = "CREATE TABLE IF NOT EXISTS " + 
 			TABLE_RESTAURANT + "(" + 
 			KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + 
 			KEY_RESTAURANT_NAME + " TEXT," + 
-			KEY_RESTAURANT_ADDRESS + " TEXT," + 
+			KEY_RESTAURANT_ADDRESS + " TEXT," +
+			KEY_RESTAURANT_DOLLAR + " TEXT," +
 			KEY_RESTAURANT_IMAGE + " TEXT" + ");";
 	
 	public RestaurantDatabaseHelper() {
@@ -49,13 +51,16 @@ public class RestaurantDatabaseHelper extends DatabaseHelper<Restaurant> {
 			sb.append(TABLE_RESTAURANT + " (");
 			sb.append(KEY_RESTAURANT_NAME + ",");
 			sb.append(KEY_RESTAURANT_ADDRESS + ",");
+			sb.append(KEY_RESTAURANT_DOLLAR + ",");
 			sb.append(KEY_RESTAURANT_IMAGE + ")");
 			sb.append(" VALUES (?, ?, ?);");
 
 			stmt = c.prepareStatement(sb.toString());
 			stmt.setString(1, object.getName());
 			stmt.setString(2, object.getAddress());
-			stmt.setString(3, object.getImage());
+			stmt.setString(3, object.getDollar());
+			stmt.setString(4, object.getImage());
+			
 			stmt.executeUpdate();
 
 			getRecentlyCreatedObject(object);
@@ -74,6 +79,7 @@ public class RestaurantDatabaseHelper extends DatabaseHelper<Restaurant> {
 		if (object.getName() != null) criteria.put(KEY_RESTAURANT_NAME, String.valueOf(object.getName()));
 		if (object.getAddress() != null) criteria.put(KEY_RESTAURANT_ADDRESS, String.valueOf(object.getAddress()));
 		if (object.getImage() != null) criteria.put(KEY_RESTAURANT_IMAGE, String.valueOf(object.getImage()));
+		if (object.getDollar() != null) criteria.put(KEY_RESTAURANT_DOLLAR, String.valueOf(object.getDollar()));
 
 		Restaurant restaurant = select(criteria);
 		if (restaurant != null) {
@@ -94,6 +100,7 @@ public class RestaurantDatabaseHelper extends DatabaseHelper<Restaurant> {
 			sb.append(TABLE_RESTAURANT + " SET ");
 			sb.append(KEY_RESTAURANT_NAME + " = ?, ");
 			sb.append(KEY_RESTAURANT_ADDRESS + " = ?, ");
+			sb.append(KEY_RESTAURANT_DOLLAR + " = ?, ");
 			sb.append(KEY_RESTAURANT_IMAGE + " = ?");
 			sb.append(" WHERE ");
 			sb.append("id = ?;");
@@ -101,8 +108,9 @@ public class RestaurantDatabaseHelper extends DatabaseHelper<Restaurant> {
 			stmt = c.prepareStatement(sb.toString());
 			stmt.setString(1, object.getName());
 			stmt.setString(2, object.getAddress());
-			stmt.setString(3, object.getImage());
-			stmt.setString(7, String.valueOf(object.getId()));
+			stmt.setString(3, object.getDollar());
+			stmt.setString(4, object.getImage());
+			stmt.setString(8, String.valueOf(object.getId()));
 
 			stmt.executeUpdate();
 
@@ -184,7 +192,8 @@ public class RestaurantDatabaseHelper extends DatabaseHelper<Restaurant> {
 				String name = rs.getString(KEY_RESTAURANT_NAME);
 				String address = rs.getString(KEY_RESTAURANT_ADDRESS);
 				String image = rs.getString(KEY_RESTAURANT_IMAGE);
-				Restaurant restaurant = new Restaurant(name, address, image);
+				String dollar = rs.getString(KEY_RESTAURANT_DOLLAR);
+				Restaurant restaurant = new Restaurant(name, address, image, dollar);
 				restaurant.setId(id);
 				res.add(restaurant);
 			}

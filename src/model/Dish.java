@@ -21,11 +21,12 @@ public class Dish extends Entity implements Serializable{
 	private String image;
 	private double rating;
 
-	public Dish(String name, double price, String image) {
+	public Dish(String name, double price, String image, double rating) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.image = image;
+		this.rating = rating;
 	}
 	
 	public Dish() {
