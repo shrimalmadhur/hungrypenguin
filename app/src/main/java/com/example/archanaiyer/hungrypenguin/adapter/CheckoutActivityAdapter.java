@@ -57,7 +57,6 @@ public class CheckoutActivityAdapter extends RecyclerView.Adapter<CheckoutActivi
 
     @Override
     public void onBindViewHolder(CheckoutItemsHolder holder, int position) {
-        // TODO: set binding from dishes
 
         Checkout currDish = dishes.get(position);
 

@@ -1,6 +1,7 @@
 package com.example.archanaiyer.hungrypenguin.ws.remote;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -45,6 +46,10 @@ public class RemoteService {
         RequestParams params = new RequestParams();
         params.add("username", username);
         params.add("password", password);
+//        final ProgressDialog dialog = new ProgressDialog(((Activity)context));
+//        dialog.setMessage("Logging in");
+//        dialog.setCancelable(false);
+//        dialog.show();
         client.post(NetworkUtils.getEndPoint(NetworkConstants.LOGIN), params, new AsyncHttpResponseHandler() {
 
             @Override
@@ -75,8 +80,11 @@ public class RemoteService {
 
 
                 } catch (JSONException e) {
+                    Toast.makeText(context, "Check the Username and Passoword", Toast.LENGTH_LONG).show();
                     Log.i(TAG, "Not Logged In");
                     e.printStackTrace();
+                } finally {
+//                    dialog.hide();
                 }
             }
 
@@ -105,7 +113,6 @@ public class RemoteService {
                 try {
                     responseObj = new JSONArray(responseString);
 
-                    // TODO: prepare this list from responseObj
                     List<Restaurant> restaurantList = new ArrayList<Restaurant>();
                     for (int i = 0; i < responseObj.length(); i++) {
                         JSONObject obj = responseObj.getJSONObject(i);
@@ -151,7 +158,6 @@ public class RemoteService {
                 String responseString = new String(responseBody);
                 try {
                     JSONArray responseObj = new JSONArray(responseString);
-                    // TODO: get Dishes from response
 
                     // dynamic dish data
                     List<Dish> dishes = new ArrayList<Dish>();
@@ -204,8 +210,7 @@ public class RemoteService {
         client.post(NetworkUtils.getEndPoint(NetworkConstants.REGISTER), params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                // TODO: if registration is successful then redirect to Login Activity;
-                boolean isRegistered = true; // TODO: change this logic to get boolean
+                boolean isRegistered = true;
                 if (isRegistered) {
                     String response = new String(responseBody);
                     JSONObject responseObject = null;
@@ -219,7 +224,7 @@ public class RemoteService {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 } else {
-                    // TODO: notify by Toast
+
                 }
             }
 

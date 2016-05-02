@@ -41,7 +41,6 @@ public class ProfileActivity extends AppCompatActivity {
             username.setText(profile.getFirstName() + " " + profile.getLastName());
 
         } else {
-            // TODO: get profile details from database
             SharedPreferences sPref = getApplicationContext().getSharedPreferences("user", 0);
             String profile = sPref.getString("user", "");
             Log.d(TAG, profile);
