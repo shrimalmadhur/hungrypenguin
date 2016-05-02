@@ -15,7 +15,7 @@ import com.example.archanaiyer.hungrypenguin.entities.DishReview;
 import java.util.List;
 
 /**
- * Created by Knock on 4/30/16.
+ * Created by Madhur Shrimal on 4/30/16.
  */
 public class ReviewActivityAdapter extends RecyclerView.Adapter<ReviewActivityAdapter.DishReviewsItemHolder>{
 
@@ -56,6 +56,6 @@ public class ReviewActivityAdapter extends RecyclerView.Adapter<ReviewActivityAd
 
     @Override
     public int getItemCount() {
-        return 0;
+        return dishReviews.size();
     }
 }

@@ -64,6 +64,7 @@ public class ReviewsActivity extends AppCompatActivity {
             dishes.add(dishReview);
         }
 
+
         adapter = new ReviewActivityAdapter(dishes);
         rv.setAdapter(adapter);
     }
