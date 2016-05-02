@@ -7,6 +7,8 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.archanaiyer.hungrypenguin.R;
 import com.example.archanaiyer.hungrypenguin.entities.Dish;
 
@@ -25,6 +27,9 @@ public class FoodDetailActivity extends AppCompatActivity {
         Dish d = (Dish) getIntent().getExtras().get("dish");
         dishName.setText(d.name);
 
+        Glide.with(getApplicationContext()).load(d.imageUrl)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .into(dishImage);
     }
 
     public void showProfile(MenuItem item) {

@@ -74,7 +74,6 @@ public class RestaurantListActivity extends AppCompatActivity {
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
         if (mAdapter == null) {
-            //showMessage(R.string.error, R.string.no_nfc);
             Log.d(TAG, "NFC adapter null error");
             finish();
             return;
