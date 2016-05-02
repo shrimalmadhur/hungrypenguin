@@ -27,7 +27,7 @@
         android:maxLines="2"
         android:padding="8dp"
         android:text="title"
-        android:textColor="#222"
+        android:textColor="@color/restText"
         android:textSize="22dp"
         android:textStyle="bold" />
 
@@ -41,8 +41,7 @@
         android:layout_toRightOf="@id/thumbnail"
         android:maxLines="3"
         android:padding="8dp"
-        android:text="addsadsad"
-        android:textColor="#666"
+        android:textColor="@color/restText2"
         android:textSize="14dp" />
 
     <TextView

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/review_cv"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -18,8 +17,8 @@
             android:layout_alignParentLeft="true"
             android:maxLines="3"
             android:padding="8dp"
-            android:text="dishname"
-            android:textColor="#222"
+            android:text="@string/dishNameText"
+            android:textColor="@color/dishOrderText"
             android:textSize="22dp"
             android:textStyle="bold" />
 
@@ -32,8 +31,7 @@
             android:layout_marginTop="6dp"
             android:maxLines="3"
             android:padding="8dp"
-            android:text=""
-            android:textColor="#666" />
+            android:textColor="@color/restText2" />
 
         <View
             android:layout_width="match_parent"

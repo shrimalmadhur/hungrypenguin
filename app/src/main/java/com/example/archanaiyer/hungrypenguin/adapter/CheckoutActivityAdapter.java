@@ -1,7 +1,6 @@
 package com.example.archanaiyer.hungrypenguin.adapter;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -57,8 +56,6 @@ public class CheckoutActivityAdapter extends RecyclerView.Adapter<CheckoutActivi
 
     @Override
     public void onBindViewHolder(CheckoutItemsHolder holder, int position) {
-        // TODO: set binding from dishes
-
         Checkout currDish = dishes.get(position);
 
         holder.name.setText(currDish.name);
