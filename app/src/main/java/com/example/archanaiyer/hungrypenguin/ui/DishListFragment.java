@@ -58,7 +58,7 @@ public class DishListFragment extends Fragment implements PrefsEventHandler, Det
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dish_list, container, false);
-        dishesRV = (RecyclerView) view.findViewById(R.id.rv);
+        dishesRV = (RecyclerView) view.findViewById(R.id.recycler_view_checkout);
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         dishesRV.setLayoutManager(llm);
         dishesRV.setAdapter(dishesAdapter);

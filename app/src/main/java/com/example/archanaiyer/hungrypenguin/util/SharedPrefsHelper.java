@@ -3,6 +3,8 @@ package com.example.archanaiyer.hungrypenguin.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.archanaiyer.hungrypenguin.entities.Dish;
+
 import java.util.HashMap;
 import java.util.Map;
 
