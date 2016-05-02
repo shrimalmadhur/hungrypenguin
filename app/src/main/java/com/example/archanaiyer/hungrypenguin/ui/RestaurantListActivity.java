@@ -25,6 +25,7 @@ import com.example.archanaiyer.hungrypenguin.entities.Restaurant;
 import com.example.archanaiyer.hungrypenguin.entities.RestaurantList;
 import com.example.archanaiyer.hungrypenguin.entities.User;
 import com.example.archanaiyer.hungrypenguin.util.SharedPrefsHelper;
+import com.example.archanaiyer.hungrypenguin.ws.remote.RemoteService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -178,10 +179,7 @@ public class RestaurantListActivity extends AppCompatActivity {
         User u = new User();
         try {
             u.fromJson(new JSONObject(profile));
-            Intent intent = new Intent(this, OrderHistoryActivity.class);
-            intent.putExtra("currUser", u);
-
-            startActivity(intent);
+            RemoteService.getOrdersHistory(this, u.getUsername());
         } catch (JSONException e) {
             e.printStackTrace();
         }

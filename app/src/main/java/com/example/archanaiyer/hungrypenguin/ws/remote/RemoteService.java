@@ -12,10 +12,12 @@ import com.example.archanaiyer.hungrypenguin.entities.Restaurant;
 import com.example.archanaiyer.hungrypenguin.entities.RestaurantList;
 import com.example.archanaiyer.hungrypenguin.entities.User;
 import com.example.archanaiyer.hungrypenguin.ui.LoginActivity;
+import com.example.archanaiyer.hungrypenguin.ui.OrderHistoryActivity;
 import com.example.archanaiyer.hungrypenguin.ui.RestaurantDetailActivity;
 import com.example.archanaiyer.hungrypenguin.ui.RestaurantListActivity;
 import com.loopj.android.http.*;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,7 +34,7 @@ public class RemoteService {
     private static final String TAG = "RemoteService";
 
     public static void login(String username, String password, final Context context) {
-        SyncHttpClient client = new SyncHttpClient();
+        AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.add("username", username);
         params.add("password", password);
@@ -91,12 +93,16 @@ public class RemoteService {
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 
                 String responseString = new String(responseBody);
-                JSONObject responseObj;
+                Log.d(TAG, responseString);
+                JSONArray responseObj;
                 try {
-                    responseObj = new JSONObject(responseString);
+                    responseObj = new JSONArray(responseString);
 
                     // TODO: prepare this list from responseObj
                     List<Restaurant> restaurantList = new ArrayList<Restaurant>();
+                    for(int i=0; i < responseObj.length(); i++) {
+                        restaurantList.add((Restaurant) responseObj.get(i));
+                    }
                     RestaurantList rList = new RestaurantList(restaurantList);
                     Intent intent = new Intent(context, RestaurantListActivity.class);
                     intent.putExtra("restaurants", rList);
@@ -228,14 +234,22 @@ public class RemoteService {
     }
 
 
-    public static void getOrdersHistory(String username) {
+    public static void getOrdersHistory(final Context context, String username) {
         SyncHttpClient client = new SyncHttpClient();
         RequestParams params = new RequestParams();
         params.add("username", username);
         client.get(NetworkUtils.getEndPoint(NetworkConstants.HISTORY), params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-
+                String responseString = new String(responseBody);
+                try {
+                    JSONObject responseObj = new JSONObject(responseString);
+                    Intent intent = new Intent(context, OrderHistoryActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
