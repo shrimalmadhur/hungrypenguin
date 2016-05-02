@@ -9,6 +9,9 @@ import java.io.Serializable;
 
 import org.json.JSONObject;
 
+import db.DishDatabaseHelper;
+import db.OrderDatabaseHelper;
+
 public class OrderDish extends Entity implements Serializable {
 
 	/**
@@ -26,6 +29,19 @@ public class OrderDish extends Entity implements Serializable {
 		super();
 		this.orderId = orderId;
 		this.dishId = dishId;
+		
+		retrieveDishInstance();
+		retrieveOrderInstance();
+	}
+	
+	private void retrieveDishInstance() {
+		DishDatabaseHelper db = new DishDatabaseHelper();
+		dish = db.getById(dishId);
+	}
+	
+	private void retrieveOrderInstance() {
+		OrderDatabaseHelper db = new OrderDatabaseHelper();
+		order = db.getById(orderId);
 	}
 
 	public int getId() {
@@ -42,6 +58,7 @@ public class OrderDish extends Entity implements Serializable {
 
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
+		retrieveOrderInstance();
 	}
 
 	public int getDishId() {
@@ -50,6 +67,7 @@ public class OrderDish extends Entity implements Serializable {
 
 	public void setDishId(int dishId) {
 		this.dishId = dishId;
+		retrieveDishInstance();
 	}
 
 	public Order getOrder() {
@@ -58,6 +76,7 @@ public class OrderDish extends Entity implements Serializable {
 
 	public void setOrder(Order order) {
 		this.order = order;
+		this.orderId = order.getId();
 	}
 
 	public Dish getDish() {
@@ -66,6 +85,7 @@ public class OrderDish extends Entity implements Serializable {
 
 	public void setDish(Dish dish) {
 		this.dish = dish;
+		this.dishId = dish.getId();
 	}
 
 	@Override
