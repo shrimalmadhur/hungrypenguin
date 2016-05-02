@@ -31,12 +31,14 @@
         android:id="@+id/register_firstname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/register_password"
         android:hint="@string/prompt_firstname" />
 
     <EditText
         android:id="@+id/register_lastname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/register_firstname"
         android:hint="@string/prompt_lastname" />
 
     <Button

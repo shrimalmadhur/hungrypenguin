@@ -4,7 +4,8 @@ package com.example.archanaiyer.hungrypenguin.ws.remote;
  * Created by Madhur Shrimal on 4/20/16.
  */
 public class NetworkConstants {
-    public static final String BASE_URL = "http://192.168.1.12:8080/HungryPenguinServer";
+    public static final String BASE_URL = "http://ec2-54-84-3-27.compute-1.amazonaws.com:8080/hungrypenguin_server";
+//    public static final String BASE_URL = "http://192.168.1.15:8080/hungrypenguin_server";
 
     public static enum METHOD_TYPE
     {

@@ -57,17 +57,19 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                if(!TextUtils.isEmpty(firstName)){
+                if(TextUtils.isEmpty(firstName)){
                     mFirstName.setError("This field is required");
                     mFirstName.requestFocus();
+                    return;
                 }
 
-                if(!TextUtils.isEmpty(lastName)){
+                if(TextUtils.isEmpty(lastName)){
                     mLastName.setError("This field is required");
                     mLastName.requestFocus();
+                    return;
                 }
 
-                User user = new User(username, firstName, lastName, password, username, null);
+                User user = new User(username, firstName, lastName, password, username, "123456");
 
 
                 RemoteService.register(user,  mContext);

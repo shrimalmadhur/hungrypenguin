@@ -2,6 +2,7 @@ package com.example.archanaiyer.hungrypenguin.ui;
 
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
@@ -23,7 +24,12 @@ import com.example.archanaiyer.hungrypenguin.R;
 import com.example.archanaiyer.hungrypenguin.adapter.RVSampleAdapter;
 import com.example.archanaiyer.hungrypenguin.data.RestaurantData;
 import com.example.archanaiyer.hungrypenguin.entities.Restaurant;
+import com.example.archanaiyer.hungrypenguin.entities.RestaurantList;
+import com.example.archanaiyer.hungrypenguin.entities.User;
 import com.example.archanaiyer.hungrypenguin.util.SharedPrefsHelper;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.nio.charset.Charset;
 import java.util.List;
@@ -59,6 +65,10 @@ public class RestaurantListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // get restautantsList from Intent
+        RestaurantList rList = (RestaurantList) getIntent().getExtras().get("restaurants");
+        restaurants = rList.getRestaurantList();
+
         // clear the orderlist
         SharedPrefsHelper mSharedPrefs = new SharedPrefsHelper(this);
         mSharedPrefs.clear();
@@ -72,7 +82,7 @@ public class RestaurantListActivity extends AppCompatActivity {
             finish();
             return;
         }else{
-            Log.d(TAG, "NFC Adater is NOT null");
+            Log.d(TAG, "NFC Adapter is NOT null");
         }
 
         mPendingIntent = PendingIntent.getActivity(this, 0,
@@ -85,8 +95,8 @@ public class RestaurantListActivity extends AppCompatActivity {
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
 
-        RestaurantData rd = new RestaurantData();
-        List<Restaurant> restaurants = rd.getRestaurants();
+//        RestaurantData rd = new RestaurantData();
+//        List<Restaurant> restaurants = rd.getRestaurants();
 
         adapter = new RVSampleAdapter(restaurants, this);
         //adapter.setItemClickListener(this);
@@ -126,7 +136,7 @@ public class RestaurantListActivity extends AppCompatActivity {
 
     private void resolveIntent(Intent intent) {
         String action = intent.getAction();
-        Log.d(TAG, "IN RESOLVEINTENT fn " + action);
+        Log.d(TAG, "IN RESOLVE INTENT fn " + action);
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)
                 || NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)
                 || NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)) {
@@ -164,8 +174,18 @@ public class RestaurantListActivity extends AppCompatActivity {
     }
 
     public void showHistory(MenuItem item) {
-        Intent intent = new Intent(this, OrderHistoryActivity.class);
-        startActivity(intent);
+        SharedPreferences sPref = getApplicationContext().getSharedPreferences("user", 0);
+        String profile = sPref.getString("user", "");
+        User u = new User();
+        try {
+            u.fromJson(new JSONObject(profile));
+            Intent intent = new Intent(this, OrderHistoryActivity.class);
+            intent.putExtra("currUser", u);
+
+            startActivity(intent);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -15,13 +15,14 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.archanaiyer.hungrypenguin.R;
 import com.example.archanaiyer.hungrypenguin.entities.Restaurant;
 import com.example.archanaiyer.hungrypenguin.ui.RestaurantDetailActivity;
+import com.example.archanaiyer.hungrypenguin.ws.remote.RemoteService;
 
 import java.util.List;
 
 /**
  * Created by archanaiyer on 4/4/16.
  */
-public class RVSampleAdapter extends RecyclerView.Adapter<RVSampleAdapter.SampleHolder>{
+public class RVSampleAdapter extends RecyclerView.Adapter<RVSampleAdapter.SampleHolder> {
 
     List<Restaurant> restaurants;
     Context context;
@@ -39,7 +40,7 @@ public class RVSampleAdapter extends RecyclerView.Adapter<RVSampleAdapter.Sample
             this.c = cntxt;
             itemView.setClickable(true);
             itemView.setOnClickListener(this);
-            rv = (RelativeLayout)itemView.findViewById(R.id.restaurantrv);
+            rv = (RelativeLayout) itemView.findViewById(R.id.restaurantrv);
             thumbnail = (ImageView) itemView.findViewById(R.id.thumbnail);
             title = (TextView) itemView.findViewById(R.id.title);
             address = (TextView) itemView.findViewById(R.id.address);
@@ -50,13 +51,12 @@ public class RVSampleAdapter extends RecyclerView.Adapter<RVSampleAdapter.Sample
         @Override
         public void onClick(View v) {
             //Toast.makeText(context, restaurants.get(getPosition()).name, Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(context, RestaurantDetailActivity.class);
-            i.putExtra("name", restaurants.get(getPosition()).name);
-            context.startActivity(i);
+            RemoteService.getRestaurant(c, restaurants.get(getPosition()).getId());
+
         }
     }
 
-    public RVSampleAdapter(List<Restaurant> restaurants, Context passedContext){
+    public RVSampleAdapter(List<Restaurant> restaurants, Context passedContext) {
         this.restaurants = restaurants;
         this.context = passedContext;
     }
@@ -71,12 +71,12 @@ public class RVSampleAdapter extends RecyclerView.Adapter<RVSampleAdapter.Sample
 
     @Override
     public void onBindViewHolder(SampleHolder holder, final int position) {
-        holder.title.setText(restaurants.get(position).name);
-        holder.address.setText(restaurants.get(position).address);
-        holder.dollar.setText(restaurants.get(position).dollar);
+        holder.title.setText(restaurants.get(position).getName());
+        holder.address.setText(restaurants.get(position).getAddress());
+        holder.dollar.setText(restaurants.get(position).getDollar());
 //        holder.thumbnail.setImageURI(Uri.parse(restaurants.get(position).imageUrl));
         Glide.with(holder.itemView.getContext())
-                .load(restaurants.get(position).imageUrl)
+                .load(restaurants.get(position).getImage())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(holder.thumbnail);
     }
