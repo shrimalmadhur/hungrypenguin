@@ -11,6 +11,7 @@ import com.example.archanaiyer.hungrypenguin.entities.Dish;
 import com.example.archanaiyer.hungrypenguin.entities.Restaurant;
 import com.example.archanaiyer.hungrypenguin.entities.RestaurantList;
 import com.example.archanaiyer.hungrypenguin.entities.User;
+import com.example.archanaiyer.hungrypenguin.ui.FoodDetailActivity;
 import com.example.archanaiyer.hungrypenguin.ui.LoginActivity;
 import com.example.archanaiyer.hungrypenguin.ui.OrderHistoryActivity;
 import com.example.archanaiyer.hungrypenguin.ui.RestaurantDetailActivity;
@@ -71,7 +72,6 @@ public class RemoteService {
                     Log.i(TAG, "Not Logged In");
                     e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -101,11 +101,11 @@ public class RemoteService {
 
                     // TODO: prepare this list from responseObj
                     List<Restaurant> restaurantList = new ArrayList<Restaurant>();
-                    for(int i=0; i < responseObj.length(); i++) {
+                    for (int i = 0; i < responseObj.length(); i++) {
                         JSONObject obj = responseObj.getJSONObject(i);
 
                         Restaurant r = new Restaurant(obj.getString("name"), obj.getString("address")
-                            , obj.getString("image"), obj.getString("dollar"));
+                                , obj.getString("image"), obj.getString("dollar"));
                         r.setId(obj.getInt("id"));
                         restaurantList.add(r);
                     }
@@ -149,7 +149,7 @@ public class RemoteService {
 
                     // dynamic dish data
                     List<Dish> dishes = new ArrayList<Dish>();
-                    for(int i=0; i < responseObj.length(); i++) {
+                    for (int i = 0; i < responseObj.length(); i++) {
                         JSONObject jObj = responseObj.getJSONObject(i);
                         Dish d = new Dish(jObj.getInt("id"),
                                 jObj.getString("image"),
@@ -168,7 +168,6 @@ public class RemoteService {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -289,7 +288,6 @@ public class RemoteService {
         client.get(NetworkUtils.getEndPoint(NetworkConstants.REVIEWS), params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-
             }
 
             @Override
@@ -300,6 +298,41 @@ public class RemoteService {
             @Override
             public void onRetry(int retryNo) {
                 // called when request is retried
+            }
+        });
+    }
+
+    public static void getDishDetails(final Context context, int dishId) {
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        params.add("id", String.valueOf(dishId));
+        client.get(NetworkUtils.getEndPoint(NetworkConstants.DISH), params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                String responseString = new String(responseBody);
+                Dish d = null;
+                try {
+                    JSONObject object = new JSONObject(responseString);
+
+                    d = new Dish(object.getInt("id"),
+                            object.getString("image"),
+                            object.getString("name"),
+                            object.getDouble("price"),
+                            null,
+                            object.getInt("rating"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                Intent intent = new Intent(context, FoodDetailActivity.class);
+                intent.putExtra("dish", d);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
             }
         });
     }

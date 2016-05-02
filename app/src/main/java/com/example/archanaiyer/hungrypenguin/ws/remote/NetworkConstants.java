@@ -26,4 +26,5 @@ public class NetworkConstants {
     public static final String HISTORY = "history";
     public static final String REVIEWS = "reviews";
     public static final String REVIEW = "review";
+    public static final String DISH = "dish";
 }

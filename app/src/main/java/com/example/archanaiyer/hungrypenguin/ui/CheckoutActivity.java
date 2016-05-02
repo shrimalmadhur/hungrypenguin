@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.archanaiyer.hungrypenguin.R;
 import com.example.archanaiyer.hungrypenguin.adapter.CheckoutActivityAdapter;
@@ -146,5 +147,9 @@ public class CheckoutActivity extends AppCompatActivity implements MockActionCal
         startActivity(intent);
     }
 
-
+    public void logout(MenuItem item) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

@@ -18,6 +18,7 @@ import com.example.archanaiyer.hungrypenguin.entities.Dish;
 import com.example.archanaiyer.hungrypenguin.adapter.DishesAdapter;
 import com.example.archanaiyer.hungrypenguin.util.PrefsEventHandler;
 import com.example.archanaiyer.hungrypenguin.util.SharedPrefsHelper;
+import com.example.archanaiyer.hungrypenguin.ws.remote.RemoteService;
 
 import java.util.List;
 
@@ -72,8 +73,10 @@ public class DishListFragment extends Fragment implements PrefsEventHandler, Det
 
     @Override
     public void gotoDetail(int id) {
-        Intent i = new Intent(getActivity(), FoodDetailActivity.class);
-        i.putExtra("id", id);
-        startActivity(i);
+//        Intent i = new Intent(getActivity(), FoodDetailActivity.class);
+//        i.putExtra("id", id);
+//        startActivity(i);
+        Toast.makeText(getContext(), "Dish detail", Toast.LENGTH_LONG);
+        RemoteService.getDishDetails(getContext(), id);
     }
 }

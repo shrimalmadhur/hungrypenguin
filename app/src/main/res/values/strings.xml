@@ -9,6 +9,7 @@
     <string name="title_activity_login">Sign in</string>
     <string name="action_profile">Profile</string>
     <string name="action_order_history">Order History</string>
+    <string name="action_logout">Logout</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Enter Email</string>

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.archanaiyer.hungrypenguin.R;
 import com.example.archanaiyer.hungrypenguin.ws.remote.RemoteService;
@@ -88,6 +89,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
     }
 
     public void gotoDetail(int id) {
+        RemoteService.getDishDetails(getApplicationContext(), 2);
         Intent i = new Intent(RestaurantDetailActivity.this, FoodDetailActivity.class);
         i.putExtra("id", id);
         startActivity(i);
@@ -138,6 +140,12 @@ public class RestaurantDetailActivity extends AppCompatActivity {
     public void showHistory(MenuItem item) {
         Intent intent = new Intent(this, OrderHistoryActivity.class);
         startActivity(intent);
+    }
+
+    public void logout(MenuItem item) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
 
