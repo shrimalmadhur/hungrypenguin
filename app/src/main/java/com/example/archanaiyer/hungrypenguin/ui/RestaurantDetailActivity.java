@@ -89,6 +89,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
     }
 
     public void gotoDetail(int id) {
+        RemoteService.getDishDetails(getApplicationContext(), 2);
         Intent i = new Intent(RestaurantDetailActivity.this, FoodDetailActivity.class);
         i.putExtra("id", id);
         startActivity(i);
