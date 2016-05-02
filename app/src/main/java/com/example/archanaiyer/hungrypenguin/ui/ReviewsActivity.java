@@ -1,5 +1,6 @@
 package com.example.archanaiyer.hungrypenguin.ui;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -39,11 +40,13 @@ public class ReviewsActivity extends AppCompatActivity {
     private List<DishReview> dishes = new ArrayList<>();
     private static String TAG = "ReviewsActivity";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviews);
 
+        final Context context = this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         FABProgressCircle fabProgressCircle = (FABProgressCircle) findViewById(R.id.fabProgressCircle);
         setSupportActionBar(toolbar);
@@ -70,7 +73,7 @@ public class ReviewsActivity extends AppCompatActivity {
                     String reviewString = editText.getText().toString();
                     Log.d(TAG, reviewString);
                     DishReview currDish = dishes.get(i);
-                    RemoteService.sendReview(currDish.getDishId(), reviewString, u.getUsername());
+                    RemoteService.sendReview(currDish.getDishId(), reviewString, u.getUsername(), context);
                 }
                 Snackbar.make(view, "Review submitted", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();

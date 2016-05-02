@@ -19,6 +19,7 @@ import com.example.archanaiyer.hungrypenguin.entities.User;
 import com.example.archanaiyer.hungrypenguin.ui.FoodDetailActivity;
 import com.example.archanaiyer.hungrypenguin.ui.LoginActivity;
 import com.example.archanaiyer.hungrypenguin.ui.OrderHistoryActivity;
+import com.example.archanaiyer.hungrypenguin.ui.PostOrderActivity;
 import com.example.archanaiyer.hungrypenguin.ui.RestaurantDetailActivity;
 import com.example.archanaiyer.hungrypenguin.ui.RestaurantListActivity;
 import com.loopj.android.http.*;
@@ -361,7 +362,7 @@ public class RemoteService {
     }
 
 
-    public static void sendReview(int dishId, String review, String username) {
+    public static void sendReview(int dishId, String review, String username, final Context context) {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.add("id", String.valueOf(dishId));
@@ -370,7 +371,9 @@ public class RemoteService {
         client.post(NetworkUtils.getEndPoint(NetworkConstants.REVIEW), params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-
+                Intent intent = new Intent(context, PostOrderActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
             }
 
             @Override
