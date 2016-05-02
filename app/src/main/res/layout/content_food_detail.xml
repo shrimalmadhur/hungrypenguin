@@ -61,27 +61,40 @@
             android:textSize="30dp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/review1"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/back"
-            android:padding="15dp"
-            android:text="Wow this is great! -Anshima"
-            android:textSize="20dp" />
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/reviewList">
 
-        <TextView
-            android:id="@+id/review2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/back"
-            android:padding="15dp"
-            android:text="I will eat this everyday! -Pappu"
-            android:textSize="20dp" />
+            </LinearLayout>
+        </ScrollView>
+
+
+        <!--<TextView-->
+            <!--android:id="@+id/review1"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:background="@drawable/back"-->
+            <!--android:padding="15dp"-->
+            <!--android:text="Wow this is great! -Anshima"-->
+            <!--android:textSize="20dp" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/review2"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:background="@drawable/back"-->
+            <!--android:padding="15dp"-->
+            <!--android:text="I will eat this everyday! -Pappu"-->
+            <!--android:textSize="20dp" />-->
     </LinearLayout>
 
 </RelativeLayout>

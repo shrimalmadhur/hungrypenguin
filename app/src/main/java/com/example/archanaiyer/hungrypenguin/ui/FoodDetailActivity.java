@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.archanaiyer.hungrypenguin.R;
 import com.example.archanaiyer.hungrypenguin.entities.Dish;
+import com.example.archanaiyer.hungrypenguin.ws.remote.RemoteService;
 
 public class FoodDetailActivity extends AppCompatActivity {
     TextView dishName;
@@ -24,6 +25,8 @@ public class FoodDetailActivity extends AppCompatActivity {
 
         Dish d = (Dish) getIntent().getExtras().get("dish");
         dishName.setText(d.name);
+
+        RemoteService.getReviews(d.id, this);
 
     }
 

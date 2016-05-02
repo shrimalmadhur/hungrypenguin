@@ -1,11 +1,16 @@
 package com.example.archanaiyer.hungrypenguin.ws.remote;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.archanaiyer.hungrypenguin.R;
 import com.example.archanaiyer.hungrypenguin.data.DishData;
 import com.example.archanaiyer.hungrypenguin.entities.Dish;
 import com.example.archanaiyer.hungrypenguin.entities.Restaurant;
@@ -281,13 +286,29 @@ public class RemoteService {
         });
     }
 
-    public static void getReviews(int dishId) {
-        SyncHttpClient client = new SyncHttpClient();
+    public static void getReviews(int dishId, final Context context) {
+        AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.add("id", String.valueOf(dishId));
-        client.get(NetworkUtils.getEndPoint(NetworkConstants.REVIEWS), params, new AsyncHttpResponseHandler() {
+        client.get(NetworkUtils.getEndPoint(NetworkConstants.REVIEW), params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                String responseString = new String(responseBody);
+                try {
+                    JSONArray responseArray = new JSONArray(responseString);
+                    LinearLayout ll = (LinearLayout) ((Activity) context).findViewById(R.id.reviewList);
+                    for(int i=0; i < responseArray.length(); i++) {
+                        JSONObject obj = responseArray.getJSONObject(i);
+                        TextView tv = new TextView(context);
+                        tv.setText(obj.getString("review") + " -" + ((JSONObject) obj.get("user")).getString("firstName"));
+                        tv.setBackgroundColor(0xff66ff66);
+                        tv.setPadding(20, 20, 20, 20);
+                        tv.setTextSize(20);
+                        ll.addView(tv);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
