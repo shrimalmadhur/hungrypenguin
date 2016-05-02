@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.archanaiyer.hungrypenguin.R;
 import com.example.archanaiyer.hungrypenguin.adapter.RVSampleAdapter;
@@ -94,12 +95,7 @@ public class RestaurantListActivity extends AppCompatActivity {
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
 
-//        RestaurantData rd = new RestaurantData();
-//        List<Restaurant> restaurants = rd.getRestaurants();
-
-
         adapter = new RVSampleAdapter(restaurants, this);
-        //adapter.setItemClickListener(this);
         rv.setAdapter(adapter);
 
     }
@@ -148,22 +144,12 @@ public class RestaurantListActivity extends AppCompatActivity {
                     msgs[i] = (NdefMessage) rawMsgs[i];
                 }
             } else {
-                // Unknown tag type
-//                byte[] empty = new byte[0];
-//                byte[] id = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID);
-//                Parcelable tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
 
                 Log.d(TAG, "NFC discovered");
                 Intent i = new Intent(this, RestaurantDetailActivity.class);
                 i.putExtra("name", "The Sandwich Spot");
                 startActivity(i);
-//                byte[] payload = dumpTagData(tag).getBytes();
-//                NdefRecord record = new NdefRecord(NdefRecord.TNF_UNKNOWN, empty, id, payload);
-//                NdefMessage msg = new NdefMessage(new NdefRecord[] { record });
-//                msgs = new NdefMessage[] { msg };
             }
-            // Setup the views
-            //buildTagViews(msgs);
         }
     }
 
@@ -185,12 +171,17 @@ public class RestaurantListActivity extends AppCompatActivity {
         }
     }
 
+    public void logout(MenuItem item) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
         if (mNfcAdapter != null) {
             if (!mNfcAdapter.isEnabled()) {
-                //showWirelessSettingsDialog();
                 Log.d(TAG, "NFC Adapter is NOT ENABLED");
             }
             Log.d(TAG, "NFC Adapter is ENABLED in ONRESUME");
@@ -210,6 +201,5 @@ public class RestaurantListActivity extends AppCompatActivity {
     public void onNewIntent(Intent intent) {
         setIntent(intent);
         resolveIntent(intent);
-
     }
 }

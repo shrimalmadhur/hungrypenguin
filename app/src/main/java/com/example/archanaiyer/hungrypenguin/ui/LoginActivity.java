@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         setContentView(R.layout.activity_login);
 
         facebookHelper = new FacebookHelper();
-        if(facebookHelper.isFacebookLoggedIn()){
+        if (facebookHelper.isFacebookLoggedIn()) {
             Intent intent = new Intent(getApplicationContext(), RestaurantListActivity.class);
             startActivity(intent);
         }
@@ -98,8 +98,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-//                Intent intent = new Intent(getApplicationContext(), RestaurantListActivity.class);
-//                startActivity(intent);
                 RemoteService.getAllRestaurants(getApplicationContext());
             }
 
