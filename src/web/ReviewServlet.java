@@ -49,7 +49,9 @@ public class ReviewServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		int id = Integer.parseInt(request.getParameter("id"));
+		System.out.println("DishId: " + id);
 		Dish d = dishDb.getById(id);
+		System.out.println(d);
 		if (d == null) {
 			JSONObject json = new JSONObject();
 			json.put("error", "No such dish");
@@ -63,6 +65,7 @@ public class ReviewServlet extends HttpServlet {
 		List<Review> reviews = db.selectAll(criteria);
 		JSONArray json = new JSONArray();
 		for (Review review : reviews) {
+			System.out.println(review);
 			json.put(review.toJson());
 		}
 		
@@ -83,6 +86,7 @@ public class ReviewServlet extends HttpServlet {
 		
 		Dish d = dishDb.getById(dishId);
 		if (d == null) {
+			System.out.println("No dish");
 			JSONObject json = new JSONObject();
 			json.put("error", "No such dish");
 			out.print(json);
@@ -90,19 +94,26 @@ public class ReviewServlet extends HttpServlet {
 			return;
 		}
 		
+		System.out.println("Username " + username);
 		User u = userDb.getByUsername(username);
 		if (u == null) {
+			System.out.println("No user??");
 			JSONObject json = new JSONObject();
 			json.put("error", "No such user");
 			out.print(json);
 			out.flush();
 			return;
 		}
+		System.out.println("User");
+		System.out.println(u);
+		System.out.println("Dish");
+		System.out.println(d);
 		
 		Review r = new Review(review, u.getId(), d.getId());
 		db.insert(r);
+		System.out.println("Review");
+//		System.out.println(r.toJson());
 		
-		System.out.println(r);
 		out.print(r.toJson());
 		out.flush();
 	}
