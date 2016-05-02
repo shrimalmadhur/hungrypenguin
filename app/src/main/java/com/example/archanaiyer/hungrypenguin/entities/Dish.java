@@ -16,14 +16,16 @@ public class Dish implements Serializable{
     public double cost;
     public ArrayList<String> ingredients;
     public int trendingStats;
+    public int rating;
 
     public Dish(int id, String imageUrl, String name, double cost, ArrayList<String> ingredients,
-                int stats) {
+                int stats, int rating) {
         this.id = id;
         this.imageUrl = imageUrl;
         this.name = name;
         this.cost = cost;
         this.ingredients = ingredients;
         this.trendingStats = stats;
+        this.rating = rating;
     }
 }

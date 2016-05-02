@@ -156,6 +156,7 @@ public class RemoteService {
                                 jObj.getString("name"),
                                 jObj.getDouble("price"),
                                 null,
+                                0,
                                 jObj.getInt("rating"));
                         dishes.add(d);
                     }
@@ -319,6 +320,7 @@ public class RemoteService {
                             object.getString("name"),
                             object.getDouble("price"),
                             null,
+                            0,
                             object.getInt("rating"));
                 } catch (JSONException e) {
                     e.printStackTrace();
