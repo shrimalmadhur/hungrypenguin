@@ -9,6 +9,9 @@ import java.io.Serializable;
 
 import org.json.JSONObject;
 
+import db.DishDatabaseHelper;
+import db.UserDatabaseHelper;
+
 public class Review extends Entity implements Serializable{
 
 	/**
@@ -28,6 +31,19 @@ public class Review extends Entity implements Serializable{
 		this.review = review;
 		this.userId = userId;
 		this.dishId = dishId;
+		
+		retrieveUserInstance();
+		retrieveDishInstance();
+	}
+	
+	private void retrieveDishInstance() {
+		DishDatabaseHelper db = new DishDatabaseHelper();
+		dish = db.getById(dishId);
+	}
+
+	private void retrieveUserInstance() {
+		UserDatabaseHelper userDb = new UserDatabaseHelper();
+		user = userDb.getById(userId);
 	}
 
 	public int getId() {
@@ -52,6 +68,7 @@ public class Review extends Entity implements Serializable{
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+		retrieveUserInstance();
 	}
 
 	public int getDishId() {
@@ -60,6 +77,7 @@ public class Review extends Entity implements Serializable{
 
 	public void setDishId(int dishId) {
 		this.dishId = dishId;
+		retrieveDishInstance();
 	}
 
 	public User getUser() {
@@ -68,6 +86,7 @@ public class Review extends Entity implements Serializable{
 
 	public void setUser(User user) {
 		this.user = user;
+		this.userId = user.getId();
 	}
 
 	public Dish getDish() {
@@ -76,6 +95,7 @@ public class Review extends Entity implements Serializable{
 
 	public void setDish(Dish dish) {
 		this.dish = dish;
+		this.dishId = dish.getId();
 	}
 
 	@Override
