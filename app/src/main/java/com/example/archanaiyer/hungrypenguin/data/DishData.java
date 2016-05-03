@@ -77,7 +77,7 @@ public class DishData {
     }
 
     public static List<Dish> getInterestingDishes() {
-        return dishes.subList(0, 1);
+        return dishes;
     }
 
     public static Dish getDish(int index) {
