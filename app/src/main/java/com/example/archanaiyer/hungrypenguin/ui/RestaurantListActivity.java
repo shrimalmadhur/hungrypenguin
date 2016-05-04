@@ -142,7 +142,7 @@ public class RestaurantListActivity extends AppCompatActivity {
             } else {
 
                 Log.d(TAG, "NFC discovered");
-                RemoteService.getRestaurant(getApplicationContext(), 1);
+                RemoteService.getRestaurant(getApplicationContext(), 1, "The Sandwich Spot");
                 Intent i = new Intent(this, RestaurantDetailActivity.class);
                 i.putExtra("name", "The Sandwich Spot");
                 startActivity(i);

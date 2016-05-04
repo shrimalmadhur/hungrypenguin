@@ -51,7 +51,7 @@ public class RVSampleAdapter extends RecyclerView.Adapter<RVSampleAdapter.Sample
         @Override
         public void onClick(View v) {
             //Toast.makeText(context, restaurants.get(getPosition()).name, Toast.LENGTH_SHORT).show();
-            RemoteService.getRestaurant(c, restaurants.get(getPosition()).getId());
+            RemoteService.getRestaurant(c, restaurants.get(getPosition()).getId(), restaurants.get(getPosition()).getName());
 
         }
     }

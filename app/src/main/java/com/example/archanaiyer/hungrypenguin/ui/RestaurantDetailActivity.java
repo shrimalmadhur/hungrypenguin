@@ -31,15 +31,20 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         main = this.getSharedPreferences("main", 1);
 
+
         // set title based on whether it has been opened before
         if (savedInstanceState != null) {
             title = savedInstanceState.getString("title");
         } else if (getIntent() != null && getIntent().hasExtra("name")) {
             title = getIntent().getStringExtra("name");
             main.edit().putString("title", title).commit();
+        } else if(getIntent() != null && getIntent().hasExtra("restName")){
+            title = getIntent().getExtras().getString("restName");
+            main.edit().putString("title", title).commit();
         } else {
             title = main.getString("title", "");
         }
+
         this.setTitle(title);
 
         // Set up view pager for tabs on top

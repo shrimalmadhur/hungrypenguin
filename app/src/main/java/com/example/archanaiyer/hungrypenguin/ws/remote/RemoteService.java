@@ -146,7 +146,7 @@ public class RemoteService {
         });
     }
 
-    public static void getRestaurant(final Context context, int restaurantId) {
+    public static void getRestaurant(final Context context, int restaurantId, final String restaurantName) {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.add("id", String.valueOf(restaurantId));
@@ -176,6 +176,7 @@ public class RemoteService {
                     DishData dishData = new DishData(dishes);
 
                     Intent intent = new Intent(context, RestaurantDetailActivity.class);
+                    intent.putExtra("restName", restaurantName);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 } catch (JSONException e) {
@@ -308,7 +309,7 @@ public class RemoteService {
                         JSONObject obj = responseArray.getJSONObject(i);
                         TextView tv = new TextView(context);
                         tv.setText(obj.getString("review") + " -" + ((JSONObject) obj.get("user")).getString("firstName"));
-                        tv.setBackgroundColor(0xff66ff66);
+                        tv.setBackgroundColor(0xD3D3D3);
                         tv.setPadding(20, 20, 20, 20);
                         tv.setTextSize(20);
                         ll.addView(tv);
